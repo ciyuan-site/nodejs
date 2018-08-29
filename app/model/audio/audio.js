@@ -1,67 +1,80 @@
 'use strict';
 
 module.exports = app => {
-  const { STRING, DATE, NOW, INTEGER, BIGINT, BOOLEAN, TEXT, SMALLINT, TINYINT, } = app.Sequelize;
+  const Sequelize = app.Sequelize;
 
   return app.model.audio.define('audio', {
     id: {
-      type: BIGINT.UNSIGNED,
+      type: Sequelize.BIGINT.UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
     },
     title: {
-      type: STRING,
+      type: Sequelize.STRING,
       allowNull: false,
     },
     cover: {
-      type: STRING,
+      type: Sequelize.STRING,
       allowNull: false,
       defaultValue: '',
     },
     url: {
-      type: STRING,
+      type: Sequelize.STRING,
       allowNull: false,
       defaultValue: '',
     },
     duration: {
-      type: INTEGER.UNSIGNED,
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
       defaultValue: 0,
     },
     lrc: {
-      type: TEXT,
+      type: Sequelize.TEXT,
       allowNull: false,
       defaultValue: '',
     },
     type: {
-      type: SMALLINT.UNSIGNED,
+      type: Sequelize.SMALLINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0,
     },
     review: {
-      type: TINYINT.UNSIGNED,
+      type: Sequelize.TINYINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0,
       comment: '0未审核，1审核中，2违规，3通过',
     },
     is_delete: {
-      type: BOOLEAN,
+      type: Sequelize.BOOLEAN,
       allowNull: false,
       defaultValue: false,
     },
     create_time: {
-      type: DATE,
+      type: Sequelize.DATE,
       allowNull: false,
-      defaultValue: NOW,
+      defaultValue: Sequelize.NOW,
     },
     update_time: {
-      type: DATE,
+      type: Sequelize.DATE,
       allowNull: false,
-      defaultValue: NOW,
+      defaultValue: Sequelize.NOW,
     },
   }, {
-    indexes: [],
+    indexes: [
+      {
+        name: 'title_review',
+        fields: ['title', 'review'],
+      },
+      {
+        name: 'type_review',
+        fields: ['type', 'review'],
+      },
+      {
+        name: 'review',
+        fields: ['review'],
+      },
+    ],
     initialAutoIncrement: 2001000000000000,
     comment: '音频基本信息',
   });

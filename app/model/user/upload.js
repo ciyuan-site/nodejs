@@ -3,28 +3,18 @@
 module.exports = app => {
   const Sequelize = app.Sequelize;
 
-  return app.model.passport.define('oauth', {
+  return app.model.user.define('upload', {
     id: {
       type: Sequelize.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
     },
-    open_id: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    token: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    type: {
-      type: Sequelize.TINYINT.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0,
-      comment: '0微博，1微信',
-    },
     user_id: {
+      type: Sequelize.BIGINT.UNSIGNED,
+      allowNull: false,
+    },
+    work_id: {
       type: Sequelize.BIGINT.UNSIGNED,
       allowNull: false,
     },
@@ -41,11 +31,15 @@ module.exports = app => {
   }, {
     indexes: [
       {
-        name: 'user_id_type',
+        name: 'user_id_work_id_create_time',
+        fields: ['user_id', 'work_id', 'create_time'],
+      },
+      {
+        name: 'work_id',
         unique: true,
-        fields: ['user_id', 'type'],
-      }
+        fields: ['work_id'],
+      },
     ],
-    comment: 'oauth账户',
+    comment: '作品关系',
   });
 };

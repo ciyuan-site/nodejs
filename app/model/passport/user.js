@@ -1,49 +1,49 @@
 'use strict';
 
 module.exports = app => {
-  const { STRING, DATE, NOW, TINYINT, BIGINT, BOOLEAN, } = app.Sequelize;
+  const Sequelize = app.Sequelize;
 
   return app.model.passport.define('user', {
     id: {
-      type: BIGINT.UNSIGNED,
+      type: Sequelize.BIGINT.UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
     },
     nickname: {
-      type: STRING,
+      type: Sequelize.STRING,
       allowNull: false,
     },
     sex: {
-      type: TINYINT.UNSIGNED,
+      type: Sequelize.TINYINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0,
       comment: '0未知，1男，2女，3其它',
     },
     head_url: {
-      type: STRING,
+      type: Sequelize.STRING,
       allowNull: false,
       defaultValue: '',
     },
     sign: {
-      type: STRING,
+      type: Sequelize.STRING,
       allowNull: false,
       defaultValue: '',
     },
     is_delete: {
-      type: BOOLEAN,
+      type: Sequelize.BOOLEAN,
       allowNull: false,
       defaultValue: false,
     },
     create_time: {
-      type: DATE,
+      type: Sequelize.DATE,
       allowNull: false,
-      defaultValue: NOW,
+      defaultValue: Sequelize.NOW,
     },
     update_time: {
-      type: DATE,
+      type: Sequelize.DATE,
       allowNull: false,
-      defaultValue: NOW,
+      defaultValue: Sequelize.NOW,
     },
   }, {
     indexes: [
@@ -51,7 +51,7 @@ module.exports = app => {
         name: 'nickname',
         unique: true,
         fields: ['nickname'],
-      }
+      },
     ],
     initialAutoIncrement: 2066000000010000,
     comment: '用户基本信息',

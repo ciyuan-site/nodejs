@@ -3,29 +3,19 @@
 module.exports = app => {
   const Sequelize = app.Sequelize;
 
-  return app.model.passport.define('oauth', {
+  return app.model.audio.define('audio_comment', {
     id: {
       type: Sequelize.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
     },
-    open_id: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    token: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    type: {
-      type: Sequelize.TINYINT.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0,
-      comment: '0微博，1微信',
-    },
-    user_id: {
+    audio_id: {
       type: Sequelize.BIGINT.UNSIGNED,
+      allowNull: false,
+    },
+    comment_id: {
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
     },
     create_time: {
@@ -41,11 +31,11 @@ module.exports = app => {
   }, {
     indexes: [
       {
-        name: 'user_id_type',
+        name: 'audio_id_comment_id',
         unique: true,
-        fields: ['user_id', 'type'],
-      }
+        fields: ['audio_id', 'comment_id'],
+      },
     ],
-    comment: 'oauth账户',
+    comment: '音频留言',
   });
 };

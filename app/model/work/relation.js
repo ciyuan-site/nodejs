@@ -3,29 +3,15 @@
 module.exports = app => {
   const Sequelize = app.Sequelize;
 
-  return app.model.passport.define('oauth', {
+  return app.model.work.define('relation', {
     id: {
       type: Sequelize.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
     },
-    open_id: {
+    name: {
       type: Sequelize.STRING,
-      allowNull: false,
-    },
-    token: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    type: {
-      type: Sequelize.TINYINT.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0,
-      comment: '0微博，1微信',
-    },
-    user_id: {
-      type: Sequelize.BIGINT.UNSIGNED,
       allowNull: false,
     },
     create_time: {
@@ -41,11 +27,11 @@ module.exports = app => {
   }, {
     indexes: [
       {
-        name: 'user_id_type',
+        name: 'name',
         unique: true,
-        fields: ['user_id', 'type'],
-      }
+        fields: ['name'],
+      },
     ],
-    comment: 'oauth账户',
+    comment: '作品关系类型',
   });
 };
