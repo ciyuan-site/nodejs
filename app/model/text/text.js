@@ -3,7 +3,7 @@
 module.exports = app => {
   const Sequelize = app.Sequelize;
 
-  return app.model.video.define('video', {
+  return app.model.text.define('text', {
     id: {
       type: Sequelize.BIGINT.UNSIGNED,
       primaryKey: true,
@@ -13,31 +13,6 @@ module.exports = app => {
     title: {
       type: Sequelize.STRING,
       allowNull: false,
-    },
-    cover: {
-      type: Sequelize.STRING,
-      allowNull: false,
-      defaultValue: '',
-    },
-    width: {
-      type: Sequelize.INTEGER.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0,
-    },
-    height: {
-      type: Sequelize.INTEGER.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0,
-    },
-    duration: {
-      type: Sequelize.INTEGER.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0,
-    },
-    lrc: {
-      type: Sequelize.TEXT,
-      allowNull: false,
-      defaultValue: '',
     },
     type: {
       type: Sequelize.INTEGER.UNSIGNED,
@@ -80,7 +55,7 @@ module.exports = app => {
         fields: ['is_delete', 'review'],
       },
     ],
-    initialAutoIncrement: 2002000000000000,
-    comment: '视频基本信息',
+    initialAutoIncrement: 2004000000000000,
+    comment: '文本基本信息',
   });
 };

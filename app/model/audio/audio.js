@@ -58,16 +58,16 @@ module.exports = app => {
   }, {
     indexes: [
       {
-        name: 'title_review',
-        fields: ['title', 'review'],
+        name: 'title_is_delete_review',
+        fields: ['title', 'is_delete', 'review'],
       },
       {
-        name: 'type_review',
-        fields: ['type', 'review'],
+        name: 'type_is_delete_review',
+        fields: ['type', 'is_delete', 'review'],
       },
       {
-        name: 'review',
-        fields: ['review'],
+        name: 'is_delete_review',
+        fields: ['is_delete', 'review'],
       },
     ],
     initialAutoIncrement: 2001000000000000,

@@ -109,6 +109,52 @@ async function video() {
   await bitrate.sync({ alter: true });
   await videoBitrate.sync({ alter: true });
 }
+async function image() {
+  let image = require('./app/model/image/image');
+  let sequelize = new Sequelize('image', 'root', '87351984', {
+    host: 'localhost',
+    dialect: 'mysql',
+    define: {
+      freezeTableName: true,
+      underscored: true,
+      timestamps: false,
+      charset: 'utf8mb4',
+      dialectOptions: {
+        collate: 'utf8mb4_unicode_ci',
+      },
+    },
+  });
+  image = image({
+    Sequelize,
+    model: {
+      image: sequelize,
+    },
+  });
+  await image.sync({ alter: true });
+}
+async function text() {
+  let text = require('./app/model/text/text');
+  let sequelize = new Sequelize('text', 'root', '87351984', {
+    host: 'localhost',
+    dialect: 'mysql',
+    define: {
+      freezeTableName: true,
+      underscored: true,
+      timestamps: false,
+      charset: 'utf8mb4',
+      dialectOptions: {
+        collate: 'utf8mb4_unicode_ci',
+      },
+    },
+  });
+  text = text({
+    Sequelize,
+    model: {
+      text: sequelize,
+    },
+  });
+  await text.sync({ alter: true });
+}
 async function comment() {
   let comment = require('./app/model/comment/comment');
   let sequelize = new Sequelize('comment', 'root', '87351984', {
@@ -239,6 +285,8 @@ async function exec() {
   await passport();
   await audio();
   await video();
+  await image();
+  await text();
   await comment();
   await work();
   await user();
