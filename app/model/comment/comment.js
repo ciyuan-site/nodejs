@@ -52,12 +52,12 @@ module.exports = app => {
   }, {
     indexes: [
       {
-        name: 'user_id_root_id_is_delete',
-        fields: ['user_id', 'root_id', 'is_delete'],
+        name: 'user_id_root_id_is_delete_review',
+        fields: ['user_id', 'root_id', 'is_delete', 'review'],
       },
       {
-        name: 'root_id',
-        fields: ['root_id', 'is_delete'],
+        name: 'root_id_is_delete_review',
+        fields: ['root_id', 'is_delete', 'review'],
       },
     ],
     comment: '评论',

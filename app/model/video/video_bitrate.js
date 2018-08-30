@@ -3,19 +3,29 @@
 module.exports = app => {
   const Sequelize = app.Sequelize;
 
-  return app.model.audio.define('audio_comment', {
+  return app.model.video.define('video_bitrate', {
     id: {
-      type: Sequelize.INTEGER.UNSIGNED,
+      type: Sequelize.BIGINT.UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
     },
-    audio_id: {
+    video_id: {
       type: Sequelize.BIGINT.UNSIGNED,
       allowNull: false,
     },
-    comment_id: {
+    bitrate_id: {
       type: Sequelize.INTEGER.UNSIGNED,
+      allowNull: false,
+      defaultValue: 0,
+    },
+    url: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      defaultValue: '',
+    },
+    md5: {
+      type: Sequelize.STRING(32),
       allowNull: false,
     },
     create_time: {
@@ -31,11 +41,16 @@ module.exports = app => {
   }, {
     indexes: [
       {
-        name: 'audio_id_comment_id',
+        name: 'video_id_bitrate_id',
         unique: true,
-        fields: ['audio_id', 'comment_id'],
+        fields: ['video_id', 'bitrate_id'],
+      },
+      {
+        name: 'md5',
+        unique: true,
+        fields: ['md5'],
       },
     ],
-    comment: '音频留言',
+    comment: '视频不同码率文件',
   });
 };

@@ -3,22 +3,16 @@
 module.exports = app => {
   const Sequelize = app.Sequelize;
 
-  return app.model.work.define('relation', {
+  return app.model.video.define('bitrate', {
     id: {
-      type: Sequelize.INTEGER.UNSIGNED,
+      type: Sequelize.BIGINT.UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
     },
     name: {
-      type: Sequelize.STRING,
+      type: Sequelize.BIGINT.UNSIGNED,
       allowNull: false,
-    },
-    level: {
-      type: Sequelize.TINYINT.UNSIGNED,
-      allowNull: false,
-      defaultValue: 0,
-      comment: '1等价；2强关联；3弱关联',
     },
     create_time: {
       type: Sequelize.DATE,
@@ -38,6 +32,6 @@ module.exports = app => {
         fields: ['name'],
       },
     ],
-    comment: '作品关系类型',
+    comment: '码率类型',
   });
 };

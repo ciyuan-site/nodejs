@@ -3,22 +3,20 @@
 module.exports = app => {
   const Sequelize = app.Sequelize;
 
-  return app.model.work.define('relation', {
+  return app.model.work.define('work_comment', {
     id: {
       type: Sequelize.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
     },
-    name: {
-      type: Sequelize.STRING,
+    work_id: {
+      type: Sequelize.BIGINT.UNSIGNED,
       allowNull: false,
     },
-    level: {
-      type: Sequelize.TINYINT.UNSIGNED,
+    comment_id: {
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
-      defaultValue: 0,
-      comment: '1等价；2强关联；3弱关联',
     },
     create_time: {
       type: Sequelize.DATE,
@@ -33,11 +31,11 @@ module.exports = app => {
   }, {
     indexes: [
       {
-        name: 'name',
+        name: 'work_id_comment_id',
         unique: true,
-        fields: ['name'],
+        fields: ['work_id', 'comment_id'],
       },
     ],
-    comment: '作品关系类型',
+    comment: '作品留言',
   });
 };

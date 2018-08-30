@@ -19,11 +19,6 @@ module.exports = app => {
       allowNull: false,
       defaultValue: '',
     },
-    url: {
-      type: Sequelize.STRING,
-      allowNull: false,
-      defaultValue: '',
-    },
     duration: {
       type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
@@ -35,7 +30,7 @@ module.exports = app => {
       defaultValue: '',
     },
     type: {
-      type: Sequelize.SMALLINT.UNSIGNED,
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
       defaultValue: 0,
     },

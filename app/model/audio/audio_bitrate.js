@@ -3,37 +3,30 @@
 module.exports = app => {
   const Sequelize = app.Sequelize;
 
-  return app.model.passport.define('user', {
+  return app.model.audio.define('audio_bitrate', {
     id: {
       type: Sequelize.BIGINT.UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
     },
-    nickname: {
-      type: Sequelize.STRING,
+    audio_id: {
+      type: Sequelize.BIGINT.UNSIGNED,
       allowNull: false,
     },
-    sex: {
-      type: Sequelize.TINYINT.UNSIGNED,
+    bitrate_id: {
+      type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
       defaultValue: 0,
-      comment: '0未知，1男，2女，3其它',
     },
-    head_url: {
+    url: {
       type: Sequelize.STRING,
       allowNull: false,
       defaultValue: '',
     },
-    sign: {
-      type: Sequelize.STRING,
+    md5: {
+      type: Sequelize.STRING(32),
       allowNull: false,
-      defaultValue: '',
-    },
-    is_delete: {
-      type: Sequelize.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
     },
     create_time: {
       type: Sequelize.DATE,
@@ -48,12 +41,16 @@ module.exports = app => {
   }, {
     indexes: [
       {
-        name: 'nickname',
+        name: 'audio_id_bitrate_id',
         unique: true,
-        fields: ['nickname'],
+        fields: ['audio_id', 'bitrate_id'],
+      },
+      {
+        name: 'md5',
+        unique: true,
+        fields: ['md5'],
       },
     ],
-    initialAutoIncrement: 2066000000000000,
-    comment: '用户基本信息',
+    comment: '音频不同码率文件',
   });
 };

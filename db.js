@@ -33,7 +33,8 @@ async function passport() {
 }
 async function audio() {
   let audio = require('./app/model/audio/audio');
-  let audioComment = require('./app/model/audio/audio_comment');
+  let bitrate = require('./app/model/audio/bitrate');
+  let audioBitrate = require('./app/model/audio/audio_bitrate');
   let sequelize = new Sequelize('audio', 'root', '87351984', {
     host: 'localhost',
     dialect: 'mysql',
@@ -53,18 +54,26 @@ async function audio() {
       audio: sequelize,
     },
   });
-  audioComment = audioComment({
+  bitrate = bitrate({
+    Sequelize,
+    model: {
+      audio: sequelize,
+    },
+  });
+  audioBitrate = audioBitrate({
     Sequelize,
     model: {
       audio: sequelize,
     },
   });
   await audio.sync({ alter: true });
-  await audioComment.sync({ alter: true });
+  await bitrate.sync({ alter: true });
+  await audioBitrate.sync({ alter: true });
 }
 async function video() {
   let video = require('./app/model/video/video');
-  let videoComment = require('./app/model/video/video_comment');
+  let bitrate = require('./app/model/video/bitrate');
+  let videoBitrate = require('./app/model/video/video_bitrate');
   let sequelize = new Sequelize('video', 'root', '87351984', {
     host: 'localhost',
     dialect: 'mysql',
@@ -84,14 +93,21 @@ async function video() {
       video: sequelize,
     },
   });
-  videoComment = videoComment({
+  bitrate = bitrate({
+    Sequelize,
+    model: {
+      video: sequelize,
+    },
+  });
+  videoBitrate = videoBitrate({
     Sequelize,
     model: {
       video: sequelize,
     },
   });
   await video.sync({ alter: true });
-  await videoComment.sync({ alter: true });
+  await bitrate.sync({ alter: true });
+  await videoBitrate.sync({ alter: true });
 }
 async function comment() {
   let comment = require('./app/model/comment/comment');
@@ -117,11 +133,14 @@ async function comment() {
   await comment.sync({ alter: true });
 }
 async function work() {
+  let tag = require('./app/model/work/tag');
   let type = require('./app/model/work/type');
   let relation = require('./app/model/work/relation');
   let profession = require('./app/model/work/profession');
   let workRelation = require('./app/model/work/work_relation');
   let workUser = require('./app/model/work/work_user');
+  let workComment = require('./app/model/work/work_comment');
+  let workTag = require('./app/model/work/work_tag');
   let sequelize = new Sequelize('work', 'root', '87351984', {
     host: 'localhost',
     dialect: 'mysql',
@@ -133,6 +152,12 @@ async function work() {
       dialectOptions: {
         collate: 'utf8mb4_unicode_ci',
       },
+    },
+  });
+  tag = tag({
+    Sequelize,
+    model: {
+      work: sequelize,
     },
   });
   type = type({
@@ -165,11 +190,26 @@ async function work() {
       work: sequelize,
     },
   });
+  workComment = workComment({
+    Sequelize,
+    model: {
+      work: sequelize,
+    },
+  });
+  workTag = workTag({
+    Sequelize,
+    model: {
+      work: sequelize,
+    },
+  });
+  await tag.sync({ alter: true });
   await type.sync({ alter: true });
   await relation.sync({ alter: true });
   await profession.sync({ alter: true });
   await workRelation.sync({ alter: true });
   await workUser.sync({ alter: true });
+  await workComment.sync({ alter: true });
+  await workTag.sync({ alter: true });
 }
 async function user() {
   let upload = require('./app/model/user/upload');

@@ -3,22 +3,25 @@
 module.exports = app => {
   const Sequelize = app.Sequelize;
 
-  return app.model.work.define('relation', {
+  return app.model.user.define('user_relation', {
     id: {
       type: Sequelize.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
     },
-    name: {
-      type: Sequelize.STRING,
+    user_id: {
+      type: Sequelize.BIGINT.UNSIGNED,
       allowNull: false,
     },
-    level: {
+    target_id: {
+      type: Sequelize.BIGINT.UNSIGNED,
+      allowNull: false,
+    },
+    type: {
       type: Sequelize.TINYINT.UNSIGNED,
       allowNull: false,
-      defaultValue: 0,
-      comment: '1等价；2强关联；3弱关联',
+      comment: '0关注；1黑名单',
     },
     create_time: {
       type: Sequelize.DATE,
@@ -33,9 +36,17 @@ module.exports = app => {
   }, {
     indexes: [
       {
-        name: 'name',
+        name: 'user_id_target_id',
         unique: true,
-        fields: ['name'],
+        fields: ['user_id', 'target_id'],
+      },
+      {
+        name: 'user_id_type',
+        fields: ['user_id', 'type'],
+      },
+      {
+        name: 'target_id_type',
+        fields: ['target_id', 'type'],
       },
     ],
     comment: '作品关系类型',

@@ -3,20 +3,27 @@
 module.exports = app => {
   const Sequelize = app.Sequelize;
 
-  return app.model.video.define('video_comment', {
+  return app.model.work.define('tag', {
     id: {
       type: Sequelize.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
     },
-    video_id: {
-      type: Sequelize.BIGINT.UNSIGNED,
+    name: {
+      type: Sequelize.STRING,
       allowNull: false,
     },
-    comment_id: {
-      type: Sequelize.INTEGER.UNSIGNED,
+    is_delete: {
+      type: Sequelize.BOOLEAN,
       allowNull: false,
+      defaultValue: false,
+    },
+    review: {
+      type: Sequelize.TINYINT.UNSIGNED,
+      allowNull: false,
+      defaultValue: 0,
+      comment: '0未知，1审核中，2违规，3通过',
     },
     create_time: {
       type: Sequelize.DATE,
@@ -31,11 +38,15 @@ module.exports = app => {
   }, {
     indexes: [
       {
-        name: 'video_id_comment_id',
+        name: 'name',
         unique: true,
-        fields: ['video_id', 'comment_id'],
+        fields: ['name'],
+      },
+      {
+        name: 'name_is_delete_review',
+        fields: ['name', 'is_delete', 'review'],
       },
     ],
-    comment: '视频留言',
+    comment: '标签',
   });
 };
