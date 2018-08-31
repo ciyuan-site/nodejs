@@ -3,7 +3,7 @@
 module.exports = app => {
   const Sequelize = app.Sequelize;
 
-  return app.model.passport.define('user', {
+  return app.model.user.define('user', {
     id: {
       type: Sequelize.BIGINT.UNSIGNED,
       primaryKey: true,
@@ -22,13 +22,15 @@ module.exports = app => {
     },
     head_url: {
       type: Sequelize.STRING,
-      allowNull: false,
-      defaultValue: '',
+      allowNull: true,
     },
     sign: {
       type: Sequelize.STRING,
-      allowNull: false,
-      defaultValue: '',
+      allowNull: true,
+    },
+    alias_id: {
+      type: Sequelize.INTEGER.UNSIGNED,
+      allowNull: true,
     },
     is_delete: {
       type: Sequelize.BOOLEAN,

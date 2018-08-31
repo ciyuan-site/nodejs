@@ -1,7 +1,6 @@
 const Sequelize = require('sequelize');
 
 async function passport() {
-  let user = require('./app/model/passport/user');
   let oauth = require('./app/model/passport/oauth');
   let account = require('./app/model/passport/account');
   let sequelize = new Sequelize('passport', 'root', '87351984', {
@@ -17,12 +16,6 @@ async function passport() {
       },
     },
   });
-  user = user({
-    Sequelize,
-    model: {
-      passport: sequelize,
-    },
-  });
   oauth = oauth({
     Sequelize,
     model: {
@@ -35,7 +28,6 @@ async function passport() {
       passport: sequelize,
     },
   });
-  await user.sync({ alter: true });
   await oauth.sync({ alter: true });
   await account.sync({ alter: true });
 }
@@ -266,6 +258,7 @@ async function work() {
   await workTag.sync({ alter: true });
 }
 async function user() {
+  let user = require('./app/model/user/user');
   let upload = require('./app/model/user/upload');
   let userAlias = require('./app/model/user/user_alias');
   let userRelation = require('./app/model/user/user_relation');
@@ -280,6 +273,12 @@ async function user() {
       dialectOptions: {
         collate: 'utf8mb4_unicode_ci',
       },
+    },
+  });
+  user = user({
+    Sequelize,
+    model: {
+      user: sequelize,
     },
   });
   upload = upload({
@@ -300,6 +299,7 @@ async function user() {
       user: sequelize,
     },
   });
+  await user.sync({ alter: true });
   await upload.sync({ alter: true });
   await userAlias.sync({ alter: true });
   await userRelation.sync({ alter: true });

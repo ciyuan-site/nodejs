@@ -17,7 +17,6 @@ module.exports = app => {
     bitrate_id: {
       type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
-      defaultValue: 0,
     },
     url: {
       type: Sequelize.STRING,
@@ -25,7 +24,7 @@ module.exports = app => {
       defaultValue: '',
     },
     md5: {
-      type: Sequelize.STRING(32),
+      type: Sequelize.CHAR(32),
       allowNull: false,
     },
     create_time: {

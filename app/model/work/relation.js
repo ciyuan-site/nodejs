@@ -17,8 +17,7 @@ module.exports = app => {
     level: {
       type: Sequelize.TINYINT.UNSIGNED,
       allowNull: false,
-      defaultValue: 0,
-      comment: '1等价；2强关联；3弱关联',
+      comment: '0未知；1等价；2强关联；3弱关联',
     },
     create_time: {
       type: Sequelize.DATE,

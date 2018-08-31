@@ -21,7 +21,6 @@ module.exports = app => {
     type: {
       type: Sequelize.TINYINT.UNSIGNED,
       allowNull: false,
-      defaultValue: 0,
       comment: '0微博，1微信',
     },
     user_id: {
