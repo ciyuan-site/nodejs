@@ -23,6 +23,11 @@ module.exports = app => {
       allowNull: false,
       defaultValue: 0,
     },
+    state: {
+      type: Sequelize.TINYINT.UNSIGNED,
+      allowNull: false,
+      comment: '0申请关联，1确定关联',
+    },
     create_time: {
       type: Sequelize.DATE,
       allowNull: false,
@@ -41,8 +46,12 @@ module.exports = app => {
         fields: ['work_id', 'user_id', 'profession_id'],
       },
       {
-        name: 'user_id_profession_id',
-        fields: ['user_id', 'profession_id'],
+        name: 'work_id_state',
+        fields: ['work_id', 'state'],
+      },
+      {
+        name: 'user_id_state_profession_id',
+        fields: ['user_id', 'state', 'profession_id'],
       },
     ],
     comment: '作品包含用户关系',

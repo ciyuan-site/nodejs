@@ -16,8 +16,7 @@ module.exports = app => {
     },
     cover: {
       type: Sequelize.STRING,
-      allowNull: false,
-      defaultValue: '',
+      allowNull: true,
     },
     width: {
       type: Sequelize.INTEGER.UNSIGNED,
@@ -36,8 +35,7 @@ module.exports = app => {
     },
     lrc: {
       type: Sequelize.TEXT,
-      allowNull: false,
-      defaultValue: '',
+      allowNull: true,
     },
     type: {
       type: Sequelize.INTEGER.UNSIGNED,

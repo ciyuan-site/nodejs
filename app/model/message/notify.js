@@ -3,7 +3,7 @@
 module.exports = app => {
   const Sequelize = app.Sequelize;
 
-  return app.model.user.define('user_relation', {
+  return app.model.message.define('notify', {
     id: {
       type: Sequelize.INTEGER.UNSIGNED,
       primaryKey: true,
@@ -14,14 +14,18 @@ module.exports = app => {
       type: Sequelize.BIGINT.UNSIGNED,
       allowNull: false,
     },
-    target_id: {
-      type: Sequelize.BIGINT.UNSIGNED,
-      allowNull: false,
+    content: {
+      type: Sequelize.TEXT,
     },
-    type: {
-      type: Sequelize.TINYINT.UNSIGNED,
+    is_read: {
+      type: Sequelize.BOOLEAN,
       allowNull: false,
-      comment: '0关注；1黑名单',
+      defaultValue: false,
+    },
+    is_delete: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
     },
     create_time: {
       type: Sequelize.DATE,
@@ -36,19 +40,14 @@ module.exports = app => {
   }, {
     indexes: [
       {
-        name: 'user_id_target_id',
-        unique: true,
-        fields: ['user_id', 'target_id'],
+        name: 'user_id_create_time',
+        fields: ['user_id', 'create_time'],
       },
       {
-        name: 'user_id_type_create_time',
-        fields: ['user_id', 'type', 'create_time'],
-      },
-      {
-        name: 'target_id_type_create_time',
-        fields: ['target_id', 'type', 'create_time'],
+        name: 'user_id_is_read_create_time',
+        fields: ['user_id', 'is_read', 'create_time'],
       },
     ],
-    comment: '用户关系类型',
+    comment: '提醒信息',
   });
 };

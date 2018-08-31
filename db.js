@@ -304,6 +304,29 @@ async function user() {
   await userAlias.sync({ alter: true });
   await userRelation.sync({ alter: true });
 }
+async function message() {
+  let notify = require('./app/model/message/notify');
+  let sequelize = new Sequelize('message', 'root', '87351984', {
+    host: 'localhost',
+    dialect: 'mysql',
+    define: {
+      freezeTableName: true,
+      underscored: true,
+      timestamps: false,
+      charset: 'utf8mb4',
+      dialectOptions: {
+        collate: 'utf8mb4_unicode_ci',
+      },
+    },
+  });
+  notify = notify({
+    Sequelize,
+    model: {
+      message: sequelize,
+    },
+  });
+  await notify.sync({ alter: true });
+}
 
 async function exec() {
   await passport();
@@ -314,6 +337,7 @@ async function exec() {
   await comment();
   await work();
   await user();
+  await message();
   console.warn('end');
 }
 exec();
