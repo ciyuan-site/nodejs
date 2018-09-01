@@ -12,6 +12,22 @@ module.exports = appInfo => {
     domain: 'ciyuan.site',
   };
 
+  config.sequelize = {
+    datasources: [],
+  };
+
+  config.middleware = ['jsConfig', 'report'];
+
+  config.view = {
+    defaultViewEngine: 'migi',
+    defaultExtension: '.js',
+    mapping: {
+      '.html': 'nunjucks',
+      '.htm': 'nunjucks',
+      '.js': 'migi',
+    },
+  };
+
   // add your config here
   config.middleware = [];
 
