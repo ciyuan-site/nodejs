@@ -6,12 +6,12 @@
 
 const R8232 = new RegExp(String.fromCharCode(8232), 'g');
 
-let helper = {
-  getAssetUrl(url) {
+module.exports = {
+  getAssetUrl(url) {console.log(this.ctx);
     if(url.indexOf('//') > -1) {
       return url;
     }
-    return '/public' + url + '?0';
+    return this.app.config.host + '/public' + url + '?0';
   },
   okJSON(data) {
     return {
@@ -59,22 +59,22 @@ let helper = {
 <meta name="format-detection" content="email=no"/>
 <meta name="wap-font-scale" content="no"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=no">
-<link rel="stylesheet" href="${helper.getAssetUrl('/common.css')}"/>
+<link rel="stylesheet" href="${this.getAssetUrl('/common.css')}"/>
 ${ (Array.isArray(data.css) ? data.css : [data.css]).filter((item) => {
   return item;
 }).map((item) => {
-  return `<link rel="stylesheet" href="${helper.getAssetUrl(item)}"/>`;
+  return `<link rel="stylesheet" href="${this.getAssetUrl(item)}"/>`;
 }) }
 </head>
 <body>`;
   },
   end: function(data) {
     return `<script>var $CONFIG = {};</script>
-<script src="${helper.getAssetUrl('/common.js')}" defer="defer"></script>
+<script src="${this.getAssetUrl('/common.js')}" defer="defer"></script>
 ${ (Array.isArray(data.js) ? data.js : [data.js]).filter((item) => {
   return item;
 }).map((item) => {
-  return `<script src="${helper.getAssetUrl(item)}" defer="defer"></script>`;
+  return `<script src="${this.getAssetUrl(item)}" defer="defer"></script>`;
 }) }
 </body></html>`;
   },
@@ -85,7 +85,7 @@ ${ (Array.isArray(data.js) ? data.js : [data.js]).filter((item) => {
     if(data === null) {
       return 'null';
     }
-    return helper.encode(JSON.stringify(data));
+    return this.encode(JSON.stringify(data));
   },
   encode: function(str) {
     if(!str) {
@@ -96,4 +96,4 @@ ${ (Array.isArray(data.js) ? data.js : [data.js]).filter((item) => {
   $CONFIG: 'var $CONFIG = {};',
 };
 
-module.exports = helper;
+// module.exports = helper;

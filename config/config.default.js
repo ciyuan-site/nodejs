@@ -28,8 +28,8 @@ module.exports = appInfo => {
     },
   };
 
-  // add your config here
-  config.middleware = [];
+  config.host = 'http://ciyuan.site';
+  config.hostPassport = 'http://passport.ciyuan.site';
 
   return config;
 };

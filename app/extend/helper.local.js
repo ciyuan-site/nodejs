@@ -4,7 +4,12 @@
 
 'use strict';
 
-let helper = {
+module.exports = {
+  getAssetUrl(url) {
+    console.log(this.ctx);
+    if (url.indexOf('//') > -1) {
+      return url;
+    }
+    return this.app.config.host + '/public' + url;
+  },
 };
-
-module.exports = helper;

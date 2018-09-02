@@ -5,6 +5,8 @@ module.exports = {
   entry: {
     common: './app/assets/common/index.jsx',
     index: './app/assets/index/index.jsx',
+    passport_index: './app/assets/passport_index/index.jsx',
+    passport_login: './app/assets/passport_login/index.jsx',
   },
   output: {
     path: __dirname + '/app/public',

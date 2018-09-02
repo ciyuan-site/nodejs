@@ -5,7 +5,7 @@ module.exports = app => {
 
   router.get('/', controller.index.index);
 
-  router.redirect('/passport', '/passport/login', 302);
+  router.get('/passport', controller.passport.index);
   router.get('/passport/login', controller.passport.login);
   router.get('/passport/register', controller.passport.register);
 };
