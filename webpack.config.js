@@ -7,6 +7,7 @@ module.exports = {
     index: './app/assets/index/index.jsx',
     passport_index: './app/assets/passport_index/index.jsx',
     passport_login: './app/assets/passport_login/index.jsx',
+    passport_register: './app/assets/passport_register/index.jsx',
   },
   output: {
     path: __dirname + '/app/public',

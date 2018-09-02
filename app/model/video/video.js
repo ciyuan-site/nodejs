@@ -5,7 +5,7 @@ module.exports = app => {
 
   return app.model.video.define('video', {
     id: {
-      type: Sequelize.BIGINT.UNSIGNED,
+      type: Sequelize.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
@@ -78,7 +78,6 @@ module.exports = app => {
         fields: ['is_delete', 'review'],
       },
     ],
-    initialAutoIncrement: 2002000000000000,
     comment: '视频基本信息',
   });
 };

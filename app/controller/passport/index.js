@@ -4,9 +4,9 @@ const egg = require('egg');
 
 class Controller extends egg.Controller {
   async index() {
-    const { ctx } = this;
+    const { ctx, app, } = this;
     if(ctx.session.uid) {
-      let goto = ctx.session.goto || ctx.query.goto || '/';
+      let goto = ctx.session.goto || ctx.query.goto || app.config.host;
       delete ctx.session.goto;
       ctx.redirect(goto);
     }
@@ -16,9 +16,9 @@ class Controller extends egg.Controller {
   }
 
   async login() {
-    const { ctx } = this;
+    const { ctx, app, } = this;
     if(ctx.session.uid) {
-      let goto = ctx.session.goto || ctx.query.goto || '/';
+      let goto = ctx.session.goto || ctx.query.goto || app.config.host;
       delete ctx.session.goto;
       ctx.redirect(goto);
     }
@@ -28,13 +28,21 @@ class Controller extends egg.Controller {
   }
 
   async register() {
-    const { ctx } = this;
+    const { ctx, } = this;
     if(ctx.session.uid) {
-      let goto = ctx.session.goto || ctx.query.goto || '/';
+      let goto = ctx.session.goto || ctx.query.goto || app.config.host;
       delete ctx.session.goto;
       ctx.redirect(goto);
     }
-    ctx.body = 'register';
+    else {
+      await ctx.render('passport_register', {});
+    }
+  }
+
+  async exit() {
+    const { ctx, app, } = this;
+    ctx.session = null;
+    ctx.redirect(app.config.host);
   }
 }
 

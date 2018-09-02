@@ -21,7 +21,7 @@ module.exports = app => {
     type: {
       type: Sequelize.TINYINT.UNSIGNED,
       allowNull: false,
-      comment: '0微博，1微信',
+      comment: '0微博；1微信；2qq',
     },
     user_id: {
       type: Sequelize.BIGINT.UNSIGNED,
@@ -43,6 +43,11 @@ module.exports = app => {
         name: 'user_id_type',
         unique: true,
         fields: ['user_id', 'type'],
+      },
+      {
+        name: 'open_id_type',
+        unique: true,
+        fields: ['open_id', 'type'],
       }
     ],
     comment: 'oauth账户',

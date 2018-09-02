@@ -28,6 +28,12 @@ module.exports = appInfo => {
     },
   };
 
+  config.weibo = {
+    appKey: '1846028038',
+    appSecret: '6c966bbba798ff9f9d8a5e9b02cb4747',
+    redirect: 'http://passport.ciyuan.site/oauth/weibo_login',
+  };
+
   config.host = 'http://ciyuan.site';
   config.hostPassport = 'http://passport.ciyuan.site';
   config.hostMy = 'http://my.ciyuan.site';

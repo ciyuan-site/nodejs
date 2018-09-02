@@ -5,7 +5,7 @@ module.exports = app => {
 
   return app.model.audio.define('audio', {
     id: {
-      type: Sequelize.BIGINT.UNSIGNED,
+      type: Sequelize.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
@@ -68,7 +68,6 @@ module.exports = app => {
         fields: ['is_delete', 'review'],
       },
     ],
-    initialAutoIncrement: 2001000000000000,
     comment: '音频基本信息',
   });
 };

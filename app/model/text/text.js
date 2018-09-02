@@ -5,7 +5,7 @@ module.exports = app => {
 
   return app.model.text.define('text', {
     id: {
-      type: Sequelize.BIGINT.UNSIGNED,
+      type: Sequelize.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
@@ -55,7 +55,6 @@ module.exports = app => {
         fields: ['is_delete', 'review'],
       },
     ],
-    initialAutoIncrement: 2004000000000000,
     comment: '文本基本信息',
   });
 };

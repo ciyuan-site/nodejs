@@ -43,8 +43,21 @@ module.exports = {
   autoSsl: function(url) {
     return (url || '').replace(/^https?:\/\//i, '//');
   },
+  img: function(url, w, h, q) {
+    url = url || '';
+    url = url.trim();
+    if(!/\/\/zhuanquan\./i.test(url)) {
+      return this.autoSsl(url);
+    }
+    url = url.replace(/\.(\w+)-\d*_\d*_\d*/, '.$1');
+    if(w === undefined && h === undefined && q === undefined) {
+      return url;
+    }
+    url += '-' + (w ? w : '') + '_' + (h ? h : '') + '_' + (q ? q : '');
+    return this.autoSsl(url);
+  },
   start: function(data) {
-    let uid = this.ctx.session.uid;
+    let uid = this.ctx.session && this.ctx.session.uid;console.log(this.ctx.session);
     return `<!DOCTYPE html>
 <html>
 <head>
@@ -82,8 +95,11 @@ ${ (Array.isArray(data.css) ? data.css : [data.css]).filter((item) => {
       <button>确定</button>
     </form>
     <ul class="i fn-clear">
-      <li><a href="${ uid ? this.app.config.hostMy : this.app.config.hostPassport }"
-        class="u">${ uid ? this.ctx.session.nickname : '登录/注册' }</a></li>
+      ${ uid
+        ? `<li><a href="${ this.app.config.hostMy }"><img src="${ this.img(this.ctx.session.headUrl, 64, 64, 80) }"/>${ this.ctx.session.nickname }</a></li>
+          <li><a href="${ this.app.config.hostPassport + '/exit' }">退出</a></li>`
+        : `<li><a href="${ this.app.config.hostPassport + '/login' }">登录</a></li>
+          <li><a href="${ this.app.config.hostPassport + '/register' }">注册</a></li>` }
       <li><a href="#">约稿</a></li>
       <li><a href="${ this.app.config.hostContribute }" class="contribute">投稿</a></li>
     </ul>

@@ -4,8 +4,7 @@ const egg = require('egg');
 
 class Controller extends egg.Controller {
   async index() {
-    const { ctx } = this;
-    // ctx.body = 123;
+    const { ctx, } = this;
     await ctx.render('index', {});
   }
 }

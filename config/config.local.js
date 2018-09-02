@@ -109,6 +109,12 @@ module.exports = appInfo => {
     ],
   };
 
+  config.weibo = {
+    appKey: '3849149094',
+    appSecret: 'dbda0048f2b966f37f11e5bfaae6462e',
+    redirect: 'http://passport.ciyuan.net/oauth/weibo_login',
+  };
+
   config.hotDeploy = true;
 
   config.host = 'http://ciyuan.net';

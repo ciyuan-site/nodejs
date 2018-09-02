@@ -7,9 +7,9 @@ export default function(data) {
   let passportLogin = migi.preRender(<PassportLogin/>);
 
   return data.helper.start({
-    title: '首页',
-    css: '/passport_index.css',
+    title: '登录',
+    css: '/passport_login.css',
   }) + passportLogin + data.helper.end({
-    js: '/passport_index.js',
+    js: '/passport_login.js',
   });
 };

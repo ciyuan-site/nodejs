@@ -5,7 +5,7 @@ module.exports = app => {
 
   return app.model.image.define('image', {
     id: {
-      type: Sequelize.BIGINT.UNSIGNED,
+      type: Sequelize.INTEGER.UNSIGNED,
       primaryKey: true,
       autoIncrement: true,
       allowNull: false,
@@ -65,7 +65,6 @@ module.exports = app => {
         fields: ['is_delete', 'review'],
       },
     ],
-    initialAutoIncrement: 2003000000000000,
     comment: '图画基本信息',
   });
 };

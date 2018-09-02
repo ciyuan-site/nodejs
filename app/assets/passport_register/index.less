@@ -1,11 +1,28 @@
-.passport-login{
-  .login{
+.passport-register{
+  .register{
     margin:0.5rem auto;
     width:4.1rem;
     .line{
       margin-bottom:0.1rem;
       &.right{
         text-align:right;
+      }
+      &.center{
+        text-align:center;
+      }
+      button{
+        margin-left:0.1rem;
+        width:0.5rem;
+        height:0.36rem;
+        background:#0AE;
+        border-radius:0.05rem;
+        border:none;
+        color:#FFF;
+        font-size:0.14rem;
+        cursor:pointer;
+        &:disabled{
+          background:#CCC;
+        }
       }
     }
     .lab{
@@ -19,19 +36,18 @@
       height:0.36rem;
       border:1px solid #CCC;
       border-radius:0.03rem;
+      &.code{
+        width:1rem;
+      }
     }
-    input[type="checkbox"]{
-      margin-right:0.05rem;
-    }
-    small{
-      margin-left:0.1rem;
-      color:#AAA;
+    input[type="radio"]{
+      margin:0 0.04rem 0 0.1rem;
     }
     a{
       margin-left:0.1rem;
       color:#0AE;
     }
-    button{
+    .sub{
       display:block;
       margin:0.2rem auto;
       width:1.2rem;
@@ -58,15 +74,15 @@
         padding-top:0.35rem;
         min-width:0.32rem;
         &.weibo{
-          background:url(weibo.png) no-repeat center 0;
+          background:url(../passport_login/weibo.png) no-repeat center 0;
           background-size:0.32rem 0.32rem;
         }
         &.weixin{
-          background:url(weixin.png) no-repeat center 0;
+          background:url(../passport_login/weixin.png) no-repeat center 0;
           background-size:0.32rem 0.32rem;
         }
         &.qq{
-          background:url(qq.png) no-repeat center 0;
+          background:url(../passport_login/qq.png) no-repeat center 0;
           background-size:0.32rem 0.32rem;
         }
       }
