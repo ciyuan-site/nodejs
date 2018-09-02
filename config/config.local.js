@@ -113,6 +113,12 @@ module.exports = appInfo => {
 
   config.host = 'http://ciyuan.net';
   config.hostPassport = 'http://passport.ciyuan.net';
+  config.hostMy = 'http://my.ciyuan.net';
+  config.hostAudio = 'http://audio.ciyuan.net';
+  config.hostVideo = 'http://video.ciyuan.net';
+  config.hostImage = 'http://image.ciyuan.net';
+  config.hostText = 'http://text.ciyuan.net';
+  config.hostContribute = 'http://contribute.ciyuan.net';
 
   return config;
 };

@@ -39,12 +39,16 @@ module.exports = {
         ],
       },
       {
-        test: /(\.jpg)|(\.jpeg)|(\.gif)|(\.png)|(\.ico)|(\.webp)$/,
+        test: /(\.jpg)|(\.jpeg)|(\.gif)|(\.png)|(\.ico)|(\.webp)$/i,
         loader: 'url-loader?limit=1024&name=[hash].[ext]'
       },
       {
-        test: /\.(html?)|(\.mp\d)$/,
+        test: /(\.html?)|(\.mp\d)$/i,
         loader: 'file-loader?name=[path][name].[ext]'
+      },
+      {
+        test: /(\.woff)|(\.eot)|(\.ttf)|(\.svg)$/i,
+        loader: 'file-loader?name=[hash].[ext]'
       },
     ],
   },

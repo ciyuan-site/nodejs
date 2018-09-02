@@ -7,8 +7,12 @@ class PassportIndex extends migi.Component {
   render() {
     return <div class="passport-index g-wrap">
       <ul class="card fn-clear">
-        <li>已有账号直接登录。</li>
-        <li>还没注册？创建一个新账号。</li>
+        <li>
+          <a href="login" class="login">已有账号？直接登录。</a>
+        </li>
+        <li>
+          <a href="register" class="register">还没注册？创建一个新的。</a>
+        </li>
       </ul>
     </div>;
   }

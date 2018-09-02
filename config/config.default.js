@@ -30,6 +30,12 @@ module.exports = appInfo => {
 
   config.host = 'http://ciyuan.site';
   config.hostPassport = 'http://passport.ciyuan.site';
+  config.hostMy = 'http://my.ciyuan.site';
+  config.hostAudio = 'http://audio.ciyuan.site';
+  config.hostVideo = 'http://video.ciyuan.site';
+  config.hostImage = 'http://image.ciyuan.site';
+  config.hostText = 'http://text.ciyuan.site';
+  config.hostContribute = 'http://contribute.ciyuan.site';
 
   return config;
 };

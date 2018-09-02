@@ -6,7 +6,6 @@
 
 module.exports = {
   getAssetUrl(url) {
-    console.log(this.ctx);
     if (url.indexOf('//') > -1) {
       return url;
     }

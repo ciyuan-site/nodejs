@@ -29,11 +29,13 @@
     "egg-mock": "^3.18.0",
     "eslint": "^4.11.0",
     "eslint-config-egg": "^6.0.0",
+    "file-loader": "^2.0.0",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
     "migi-loader": "^6.0.0",
     "mini-css-extract-plugin": "^0.4.2",
     "postcss-loader": "^3.0.0",
+    "url-loader": "^1.1.1",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0",
     "webstorm-disable-index": "^1.2.0"
@@ -53,7 +55,7 @@
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
     "autod": "autod",
-    "webpack": "webpack --mode production --progress --colors",
+    "webpack": "rm -rf ./app/public && webpack --mode production --progress --colors",
     "pack": "npm install --production && tar -zcvf ../release.tgz ."
   },
   "ci": {

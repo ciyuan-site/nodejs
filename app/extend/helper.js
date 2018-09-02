@@ -7,7 +7,7 @@
 const R8232 = new RegExp(String.fromCharCode(8232), 'g');
 
 module.exports = {
-  getAssetUrl(url) {console.log(this.ctx);
+  getAssetUrl(url) {
     if(url.indexOf('//') > -1) {
       return url;
     }
@@ -44,6 +44,7 @@ module.exports = {
     return (url || '').replace(/^https?:\/\//i, '//');
   },
   start: function(data) {
+    let uid = this.ctx.session.uid;
     return `<!DOCTYPE html>
 <html>
 <head>
@@ -66,7 +67,28 @@ ${ (Array.isArray(data.css) ? data.css : [data.css]).filter((item) => {
   return `<link rel="stylesheet" href="${this.getAssetUrl(item)}"/>`;
 }) }
 </head>
-<body>`;
+<body>
+<div id="g-top">
+  <div class="g-wrap">
+    <ul class="nav fn-clear">
+      <li><a href="${ this.app.config.host }" class="index">沟通创作的次元~</a></li>
+      <li><a href="${ this.app.config.hostAudio }" class="audio">音频</a></li>
+      <li><a href="${ this.app.config.hostVideo }" class="audio">视频</a></li>
+      <li><a href="${ this.app.config.hostImage }" class="audio">图绘</a></li>
+      <li><a href="${ this.app.config.hostText }" class="audio">文词</a></li>
+    </ul>
+    <form class="search">
+      <input type="text" placeholder="请输入搜索内容" autocomplete="off" maxlength="40"/>
+      <button>确定</button>
+    </form>
+    <ul class="i fn-clear">
+      <li><a href="${ uid ? this.app.config.hostMy : this.app.config.hostPassport }"
+        class="u">${ uid ? this.ctx.session.nickname : '登录/注册' }</a></li>
+      <li><a href="#">约稿</a></li>
+      <li><a href="${ this.app.config.hostContribute }" class="contribute">投稿</a></li>
+    </ul>
+  </div>
+</div>`;
   },
   end: function(data) {
     return `<script>var $CONFIG = {};</script>
