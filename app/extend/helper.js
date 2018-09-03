@@ -4,8 +4,6 @@
 
 'use strict';
 
-const R8232 = new RegExp(String.fromCharCode(8232), 'g');
-
 module.exports = {
   getAssetUrl(url) {
     if(url.indexOf('//') > -1) {
@@ -129,9 +127,7 @@ ${ (Array.isArray(data.js) ? data.js : [data.js]).filter((item) => {
     if(!str) {
       return '';
     }
-    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(R8232, '&#8232;');
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;');
   },
   $CONFIG: 'var $CONFIG = {};',
 };
-
-// module.exports = helper;
