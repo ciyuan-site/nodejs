@@ -4,6 +4,7 @@
   "description": "",
   "private": true,
   "dependencies": {
+    "ali-oss": "^6.0.1",
     "bignumber.js": "~7.2.1",
     "egg": "~2.10.0",
     "egg-redis": "~2.0.0",
@@ -56,7 +57,8 @@
     "ci": "npm run lint && npm run cov",
     "autod": "autod",
     "webpack": "rm -rf ./app/public && webpack --mode production --progress --colors",
-    "pack": "npm install --production && tar -zcvf ../release.tgz ."
+    "pack": "npm install --production && tar -zcvf ../release.tgz .",
+    "cdn": "node cdn.js"
   },
   "ci": {
     "version": "8"

@@ -28,6 +28,106 @@ module.exports = appInfo => {
     },
   };
 
+  config.sequelize = {
+    datasources: [
+      {
+        dialect: 'mysql',
+        host: 'localhost',
+        port: '3306',
+        username: 'root',
+        password: 'Army8735@',
+        delegate: 'model.passport',
+        baseDir: 'model/passport',
+        database: 'passport',
+        define: {
+          freezeTableName: true,
+          underscored: true,
+          timestamps: false,
+          charset: 'utf8mb4',
+          dialectOptions: {
+            collate: 'utf8mb4_unicode_ci',
+          },
+        },
+      },
+      {
+        dialect: 'mysql',
+        host: 'localhost',
+        port: '3306',
+        username: 'root',
+        password: 'Army8735@',
+        delegate: 'model.user',
+        baseDir: 'model/user',
+        database: 'user',
+        define: {
+          freezeTableName: true,
+          underscored: true,
+          timestamps: false,
+          charset: 'utf8mb4',
+          dialectOptions: {
+            collate: 'utf8mb4_unicode_ci',
+          },
+        },
+      },
+      {
+        dialect: 'mysql',
+        host: 'localhost',
+        port: '3306',
+        username: 'root',
+        password: 'Army8735@',
+        delegate: 'model.audio',
+        baseDir: 'model/audio',
+        database: 'audio',
+        define: {
+          freezeTableName: true,
+          underscored: true,
+          timestamps: false,
+          charset: 'utf8mb4',
+          dialectOptions: {
+            collate: 'utf8mb4_unicode_ci',
+          },
+        },
+      },
+      {
+        dialect: 'mysql',
+        host: 'localhost',
+        port: '3306',
+        username: 'root',
+        password: 'Army8735@',
+        delegate: 'model.video',
+        baseDir: 'model/video',
+        database: 'video',
+        define: {
+          freezeTableName: true,
+          underscored: true,
+          timestamps: false,
+          charset: 'utf8mb4',
+          dialectOptions: {
+            collate: 'utf8mb4_unicode_ci',
+          },
+        },
+      },
+      {
+        dialect: 'mysql',
+        host: 'localhost',
+        port: '3306',
+        username: 'root',
+        password: 'Army8735@',
+        delegate: 'model.work',
+        baseDir: 'model/work',
+        database: 'work',
+        define: {
+          freezeTableName: true,
+          underscored: true,
+          timestamps: false,
+          charset: 'utf8mb4',
+          dialectOptions: {
+            collate: 'utf8mb4_unicode_ci',
+          },
+        },
+      },
+    ],
+  };
+
   config.weibo = {
     appKey: '1846028038',
     appSecret: '6c966bbba798ff9f9d8a5e9b02cb4747',
