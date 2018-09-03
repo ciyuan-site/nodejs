@@ -86,9 +86,9 @@ ${ (Array.isArray(data.css) ? data.css : [data.css]).filter((item) => {
     <ul class="nav fn-clear">
       <li><a href="${ this.app.config.host }" class="index">沟通创作的次元~</a></li>
       <li><a href="${ this.app.config.hostAudio }" class="audio">音频</a></li>
-      <li><a href="${ this.app.config.hostVideo }" class="audio">视频</a></li>
-      <li><a href="${ this.app.config.hostImage }" class="audio">图绘</a></li>
-      <li><a href="${ this.app.config.hostText }" class="audio">文词</a></li>
+      <li><a href="${ this.app.config.hostVideo }" class="video">视频</a></li>
+      <li><a href="${ this.app.config.hostImage }" class="image">图绘</a></li>
+      <li><a href="${ this.app.config.hostText }" class="text">文词</a></li>
     </ul>
     <form class="search">
       <input type="text" placeholder="请输入搜索内容" autocomplete="off" maxlength="40"/>
