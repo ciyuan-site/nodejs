@@ -6,9 +6,9 @@
 
 module.exports = {
   getAssetUrl(url) {
-    if (url.indexOf('//') > -1) {
+    if(url.indexOf('//') > -1) {
       return url;
     }
-    return this.app.config.host + '/public' + url;
+    return '/public' + url;
   },
 };

@@ -4,12 +4,14 @@
 
 'use strict';
 
+const map = require('../../map.json');
+
 module.exports = {
   getAssetUrl(url) {
     if(url.indexOf('//') > -1) {
       return url;
     }
-    return this.app.config.hostAssets + '/public' + url + '?0';
+    return this.app.config.hostAssets + map[url.replace(/^\//, '')];
   },
   okJSON(data) {
     return {
@@ -55,7 +57,7 @@ module.exports = {
     return this.autoSsl(url);
   },
   start: function(data) {
-    let uid = this.ctx.session && this.ctx.session.uid;console.log(this.ctx.session);
+    let uid = this.ctx.session && this.ctx.session.uid;
     return `<!DOCTYPE html>
 <html>
 <head>

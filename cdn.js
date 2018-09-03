@@ -2,44 +2,71 @@
 
 const path = require('path');
 const fs = require('fs');
+const stream = require('stream');
 const SparkMD5 = require('spark-md5');
+const glob = require('glob');
 const OSS = require('ali-oss');
-
-let client = new OSS({
-  region: 'oss-cn-shanghai',
-  accessKeyId: 'LTAIUBlJw6RGb0Ht',
-  accessKeySecret: 'hMHVWLyX4w6Yr46aHH7T8FPNpFtSpD',
-  bucket: 'ciyuan-assets'
+const config = require('./config/config.local')({
+  name: '',
 });
+
+let client = new OSS(config.aliyun.oss);
 
 let list = fs.readdirSync('./app/public');
 
 async function upload() {
   console.warn('===start===');
+  let hash = {};
   for(let i = 0; i < list.length; i++) {
     let item = list[i];
+    let name;
     if(item.endsWith('.js') || item.endsWith('.css')) {
       let suffix = item.slice(item.lastIndexOf('.'));
-      let file = fs.readFileSync(path.join('./app/public', item), { encoding: 'utf-8' });
+      let file = fs.readFileSync(path.join('./app/public', item), { encoding: 'utf-8', });
       let md5 = SparkMD5.hash(file);
-      let name = md5+ suffix;
+      name = config.aliyun.oss.prefix + md5+ suffix;
       let check = await client.list({
-        prefix: 'assets/' + name,
+        prefix: name,
       });
       if(check.res && check.res.status === 200) {
         let objects = check.objects;
         if(objects && objects.length) {
-          console.log(item + ' has already exists.', md5);
+          console.log(item + ' has already exists.', name);
         }
         else {
-          //
+          let readable = new stream.Readable();
+          readable.push(file, { encoding: 'utf-8' });
+          readable.push(null);
+          let res = await client.putStream(name, readable);
+          console.log(item + ' ' + res.res.status, name);
         }
       }
       else {
-        throw new Error(item + ' check error', md5);
+        throw new Error(item + ' check error', name);
+      }
+      hash[item] = name;
+    }
+    else {
+      name = config.aliyun.oss.prefix + item;
+      let check = await client.list({
+        prefix: name,
+      });
+      if(check.res && check.res.status === 200) {
+        let objects = check.objects;
+        if(objects && objects.length) {
+          console.log(item + ' has already exists.', name);
+        }
+        else {
+          let res = await client.put(name, path.join(__dirname, './app/public', item));
+          console.log(item + ' ' + res.res.status, name);
+        }
+      }
+      else {
+        throw new Error(item + ' check error', name);
       }
     }
   }
+  fs.writeFileSync(path.join(__dirname, './map.json'), JSON.stringify(hash), { encoding: 'utf-8', });
   console.warn('===end===');
 }
 upload();

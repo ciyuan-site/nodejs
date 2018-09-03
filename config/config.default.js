@@ -134,8 +134,17 @@ module.exports = appInfo => {
     redirect: 'http://passport.ciyuan.site/oauth/weibo_login',
   };
 
+  config.aliyun = {
+    oss: {
+      region: '',
+      accessKeyId: '',
+      accessKeySecret: '',
+      bucket: '',
+    },
+  };
+
   config.host = 'http://ciyuan.site';
-  config.hostAssets = '';
+  config.hostAssets = '//zhuanquan.xin/';
   config.hostPassport = 'http://passport.ciyuan.site';
   config.hostMy = 'http://my.ciyuan.site';
   config.hostAudio = 'http://audio.ciyuan.site';
