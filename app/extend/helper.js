@@ -11,7 +11,7 @@ module.exports = {
     if(url.indexOf('//') > -1) {
       return url;
     }
-    return this.app.config.host + '/public' + url + '?0';
+    return this.app.config.hostAssets + '/public' + url + '?0';
   },
   okJSON(data) {
     return {

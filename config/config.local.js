@@ -118,6 +118,7 @@ module.exports = appInfo => {
   config.hotDeploy = true;
 
   config.host = 'http://ciyuan.net';
+  config.hostAssets = '';
   config.hostPassport = 'http://passport.ciyuan.net';
   config.hostMy = 'http://my.ciyuan.net';
   config.hostAudio = 'http://audio.ciyuan.net';

@@ -135,6 +135,7 @@ module.exports = appInfo => {
   };
 
   config.host = 'http://ciyuan.site';
+  config.hostAssets = '';
   config.hostPassport = 'http://passport.ciyuan.site';
   config.hostMy = 'http://my.ciyuan.site';
   config.hostAudio = 'http://audio.ciyuan.site';
