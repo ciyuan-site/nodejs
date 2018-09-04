@@ -4,7 +4,6 @@ const path = require('path');
 const fs = require('fs');
 const stream = require('stream');
 const SparkMD5 = require('spark-md5');
-const glob = require('glob');
 const OSS = require('ali-oss');
 const config = require('./config/config.local')({
   name: '',

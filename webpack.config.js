@@ -31,9 +31,9 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              plugins: (loader) => [
-                autoprefixer(),
-              ]
+              plugins: [
+                autoprefixer("last 100 versions"),
+              ],
             }
           },
           'less-loader'
