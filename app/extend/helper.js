@@ -11,7 +11,10 @@ module.exports = {
     if(url.indexOf('//') > -1) {
       return url;
     }
-    return this.app.config.hostAssets + map[url.replace(/^\//, '')];
+    if(map[url.replace(/^\//, '')]) {
+      return this.app.config.hostAssets + map[url.replace(/^\//, '')];
+    }
+    return '/public' + url;
   },
   okJSON(data) {
     return {
