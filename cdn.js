@@ -31,18 +31,18 @@ async function upload() {
       if(check.res && check.res.status === 200) {
         let objects = check.objects;
         if(objects && objects.length) {
-          console.log(item + ' has already exists.', name);
+          console.log(item, 304, name);
         }
         else {
           let readable = new stream.Readable();
           readable.push(file, { encoding: 'utf-8' });
           readable.push(null);
           let res = await client.putStream(name, readable);
-          console.log(item + ' ' + res.res.status, name);
+          console.log(item, res.res.status, name);
         }
       }
       else {
-        throw new Error(item + ' check error', name);
+        throw new Error(item, 503, name);
       }
       hash[item] = name;
     }
@@ -54,15 +54,15 @@ async function upload() {
       if(check.res && check.res.status === 200) {
         let objects = check.objects;
         if(objects && objects.length) {
-          console.log(item + ' has already exists.', name);
+          console.log(item, 304, name);
         }
         else {
           let res = await client.put(name, path.join(__dirname, './app/public', item));
-          console.log(item + ' ' + res.res.status, name);
+          console.log(item, res.res.status, name);
         }
       }
       else {
-        throw new Error(item + ' check error', name);
+        throw new Error(item, 503, name);
       }
     }
   }

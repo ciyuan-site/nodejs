@@ -135,11 +135,11 @@ input{
 }
 
 a{
-  color:#333;
+  color:#0AE;
   text-decoration:none;
   &:hover{
-    color:#0AE;
-    text-decoration:underline;
+    color:#E31;
+    text-shadow:1px 1px 1px rgba(66, 66, 0, 0.1);
   }
 }
 
@@ -227,7 +227,7 @@ a{
         margin-right:0.02rem;
         font-family:iconfont;
         content:'\e60e';
-        color:#996;
+        color:#666;
       }
     }
     .index{
@@ -249,27 +249,33 @@ a{
   .search{
     position:absolute;
     left:4.2rem;
-    top:0.08rem;
+    top:0.06rem;
     input{
       box-sizing:border-box;
       padding:0 0.4rem 0 0.05rem;
       width:3rem;
-      height:0.24rem;
+      height:0.28rem;
       border:1px solid #CCC;
       border-radius:0.03rem;
     }
     button{
       position:absolute;
-      top:0.02rem;
-      right:0.02rem;
+      top:0.04rem;
+      right:0.04rem;
+      padding:0;
       width:0.2rem;
       height:0.2rem;
       border-radius:100%;
       border:none;
-      background:#EEE;
       overflow:hidden;
-      text-indent:999rem;
-      white-space:nowrap;
+      font-family:iconfont;
+      font-size:0.2rem;
+      line-height:0.2rem;
+      color:#999;
+      cursor:pointer;
+      &:hover{
+        color:#333;
+      }
     }
   }
   .i{

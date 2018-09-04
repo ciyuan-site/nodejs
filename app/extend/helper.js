@@ -95,7 +95,7 @@ ${ (Array.isArray(data.css) ? data.css : [data.css]).filter((item) => {
     </ul>
     <form class="search">
       <input type="text" placeholder="请输入搜索内容" autocomplete="off" maxlength="40"/>
-      <button>确定</button>
+      <button>&#xe60c;确定</button>
     </form>
     <ul class="i fn-clear">
       ${ uid
