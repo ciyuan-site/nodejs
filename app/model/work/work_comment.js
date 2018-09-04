@@ -14,6 +14,11 @@ module.exports = app => {
       type: Sequelize.BIGINT.UNSIGNED,
       allowNull: false,
     },
+    kind: {
+      type: Sequelize.TINYINT.UNSIGNED,
+      allowNull: false,
+      comment: '0音频；1视频；2图绘；3文词',
+    },
     comment_id: {
       type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
@@ -31,9 +36,9 @@ module.exports = app => {
   }, {
     indexes: [
       {
-        name: 'work_id_comment_id',
+        name: 'work_id_kind_comment_id',
         unique: true,
-        fields: ['work_id', 'comment_id'],
+        fields: ['work_id', 'kind', 'comment_id'],
       },
     ],
     comment: '作品留言',

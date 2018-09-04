@@ -18,6 +18,11 @@ module.exports = app => {
       type: Sequelize.INTEGER.UNSIGNED,
       allowNull: false,
     },
+    work_kind: {
+      type: Sequelize.TINYINT.UNSIGNED,
+      allowNull: false,
+      comment: '0音频；1视频；2图绘；3文词',
+    },
     create_time: {
       type: Sequelize.DATE,
       allowNull: false,
@@ -31,9 +36,9 @@ module.exports = app => {
   }, {
     indexes: [
       {
-        name: 'work_id_tag_id',
+        name: 'work_id_tag_id_work_kind',
         unique: true,
-        fields: ['work_id', 'tag_id'],
+        fields: ['work_id', 'tag_id', 'work_kind'],
       },
     ],
     comment: '作品标签',

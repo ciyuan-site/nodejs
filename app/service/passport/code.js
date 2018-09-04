@@ -9,10 +9,6 @@ const TEMPLATE = {
   '2': 'SMS_80275177', // 忘记密码
   '3': 'SMS_80275182', // 绑定手机
 };
-let smsClient = new SMSClient({
-  accessKeyId: 'LTAIO1WxEZNbEkbN',
-  secretAccessKey: 'vSYTJwPai0Uqfh5ymVBcxROK3VOmmK',
-});
 
 class Service extends egg.Service {
   async register(phone) {
@@ -46,6 +42,10 @@ class Service extends egg.Service {
     }
     let cacheKey = 'codeRegister_' + phone;
     app.redis.setex(cacheKey, app.config.redis.time, JSON.stringify(code));
+    let smsClient = new SMSClient({
+      accessKeyId: app.config.aliyun.sms.accessKeyId,
+      secretAccessKey: app.config.aliyun.sms.secretAccessKey,
+    });
     let res = await smsClient.sendSMS({
       PhoneNumbers: phone,
       SignName: '转圈Circling',

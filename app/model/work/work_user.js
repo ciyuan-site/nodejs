@@ -14,6 +14,11 @@ module.exports = app => {
       type: Sequelize.BIGINT.UNSIGNED,
       allowNull: false,
     },
+    work_kind: {
+      type: Sequelize.TINYINT.UNSIGNED,
+      allowNull: false,
+      comment: '0音频；1视频；2图绘；3文词',
+    },
     user_id: {
       type: Sequelize.BIGINT.UNSIGNED,
       allowNull: false,
@@ -41,13 +46,13 @@ module.exports = app => {
   }, {
     indexes: [
       {
-        name: 'work_id_user_id_profession_id',
+        name: 'work_id_work_kind_user_id_profession_id',
         unique: true,
-        fields: ['work_id', 'user_id', 'profession_id'],
+        fields: ['work_id', 'work_kind', 'user_id', 'profession_id'],
       },
       {
-        name: 'work_id_state',
-        fields: ['work_id', 'state'],
+        name: 'work_id_work_kind_state',
+        fields: ['work_id', 'work_kind', 'state'],
       },
       {
         name: 'user_id_state_profession_id',
