@@ -42,7 +42,8 @@ async function upload() {
         }
       }
       else {
-        throw new Error(item + ' ' +  503 + ' ' + name);
+        console.error(item, 503, name);
+        return;
       }
       hash[item] = name;
     }
@@ -62,7 +63,8 @@ async function upload() {
         }
       }
       else {
-        throw new Error(item + ' ' +  503 + ' ' + name);
+        console.error(item, 503, name);
+        return;
       }
     }
   }
