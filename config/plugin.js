@@ -12,3 +12,8 @@ exports.migi = {
   enable: true,
   package: 'egg-view-migi',
 };
+
+exports.redis = {
+  enable: true,
+  package: 'egg-redis',
+};

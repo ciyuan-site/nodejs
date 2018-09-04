@@ -128,6 +128,16 @@ module.exports = appInfo => {
     ],
   };
 
+  config.redis = {
+    client: {
+      port: 6379,
+      host: '127.0.0.1',
+      password: '',
+      db: 0,
+    },
+    time: 60,
+  };
+
   config.weibo = {
     appKey: '1846028038',
     appSecret: '6c966bbba798ff9f9d8a5e9b02cb4747',
@@ -141,10 +151,14 @@ module.exports = appInfo => {
       accessKeySecret: '',
       bucket: '',
     },
+    sms: {
+      accessKeyId: '',
+      secretAccessKey: '',
+    },
   };
 
   config.host = 'http://ciyuan.site';
-  config.hostAssets = '//zhuanquan.xin/';
+  config.hostAssets = '//zhuanquan.xin';
   config.hostPassport = 'http://passport.ciyuan.site';
   config.hostMy = 'http://my.ciyuan.site';
   config.hostAudio = 'http://audio.ciyuan.site';

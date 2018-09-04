@@ -12,9 +12,12 @@ module.exports = {
       return url;
     }
     if(map[url.replace(/^\//, '')]) {
-      return this.app.config.hostAssets + map[url.replace(/^\//, '')];
+      return this.app.config.hostAssets + '/' + map[url.replace(/^\//, '')];
     }
     return '/public' + url;
+  },
+  ajaxJSON(data) {
+    return data;
   },
   okJSON(data) {
     return {

@@ -11,4 +11,5 @@ module.exports = app => {
   router.get('/passport/exit', controller.passport.index.exit);
   router.get('/passport/oauth/weibo', controller.passport.oauth.weibo);
   router.get('/passport/oauth/weibo_login', controller.passport.oauth.weiboLogin);
+  router.post('/passport/code/phone', controller.passport.code.phone);
 };
