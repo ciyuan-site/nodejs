@@ -7,9 +7,13 @@ class PassportLogin extends migi.Component {
   @bind name
   @bind password
   @bind remember
+  @bind dis
+  submit(e) {
+    e.preventDefault();
+  }
   render() {
     return <div class="g-wrap passport-login">
-      <form class="login">
+      <form class="login" onSubmit={ this.submit }>
         <div className="line right">
           <a href="/register">还没注册？</a>
           <a href="/findpassword">忘记密码？</a>
@@ -26,7 +30,7 @@ class PassportLogin extends migi.Component {
           <label><input type="checkbox" value={ this.remember }/>记住密码</label>
           <small>不是自己的电脑不要勾选此项</small>
         </div>
-        <button>登录</button>
+        <button disabled={ !this.name || !this.password }>登录</button>
       </form>
       <ul class="oauth">
         <li><a href="/oauth/weibo" class="weibo">微博登录</a></li>
