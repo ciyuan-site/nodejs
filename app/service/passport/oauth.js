@@ -97,6 +97,15 @@ class Service extends egg.Service {
           transaction: transactionPassport,
           raw: true,
         });
+        await app.model.user.User.update({
+          name: user.id,
+        }, {
+          where: {
+            id: user.id,
+          },
+          transaction: transactionUser,
+          raw: true,
+        });
         await transactionUser.commit();
         await transactionPassport.commit();
         return {
