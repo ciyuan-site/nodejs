@@ -26,7 +26,7 @@ module.exports = app => {
       type: Sequelize.TINYINT.UNSIGNED,
       allowNull: false,
       defaultValue: 0,
-      comment: '0邮箱；1手机号',
+      comment: '0手机号；1邮箱',
     },
     create_time: {
       type: Sequelize.DATE,

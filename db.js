@@ -1,10 +1,10 @@
 const Sequelize = require('sequelize');
 
-async function passport(u, p) {
+async function passport(u, p, host) {
   let oauth = require('./app/model/passport/oauth');
   let account = require('./app/model/passport/account');
   let sequelize = new Sequelize('passport', u, p, {
-    host: 'localhost',
+    host: host,
     dialect: 'mysql',
     define: {
       freezeTableName: true,
@@ -31,12 +31,12 @@ async function passport(u, p) {
   await oauth.sync({ alter: true });
   await account.sync({ alter: true });
 }
-async function audio(u, p) {
+async function audio(u, p, host) {
   let audio = require('./app/model/audio/audio');
   let bitrate = require('./app/model/audio/bitrate');
   let audioBitrate = require('./app/model/audio/audio_bitrate');
   let sequelize = new Sequelize('audio', u, p, {
-    host: 'localhost',
+    host: host,
     dialect: 'mysql',
     define: {
       freezeTableName: true,
@@ -70,12 +70,12 @@ async function audio(u, p) {
   await bitrate.sync({ alter: true });
   await audioBitrate.sync({ alter: true });
 }
-async function video(u, p) {
+async function video(u, p, host) {
   let video = require('./app/model/video/video');
   let bitrate = require('./app/model/video/bitrate');
   let videoBitrate = require('./app/model/video/video_bitrate');
   let sequelize = new Sequelize('video', u, p, {
-    host: 'localhost',
+    host: host,
     dialect: 'mysql',
     define: {
       freezeTableName: true,
@@ -109,10 +109,10 @@ async function video(u, p) {
   await bitrate.sync({ alter: true });
   await videoBitrate.sync({ alter: true });
 }
-async function image(u, p) {
+async function image(u, p, host) {
   let image = require('./app/model/image/image');
   let sequelize = new Sequelize('image', u, p, {
-    host: 'localhost',
+    host: host,
     dialect: 'mysql',
     define: {
       freezeTableName: true,
@@ -132,10 +132,10 @@ async function image(u, p) {
   });
   await image.sync({ alter: true });
 }
-async function text(u, p) {
+async function text(u, p, host) {
   let text = require('./app/model/text/text');
   let sequelize = new Sequelize('text', u, p, {
-    host: 'localhost',
+    host: host,
     dialect: 'mysql',
     define: {
       freezeTableName: true,
@@ -155,10 +155,10 @@ async function text(u, p) {
   });
   await text.sync({ alter: true });
 }
-async function comment(u, p) {
+async function comment(u, p, host) {
   let comment = require('./app/model/comment/comment');
   let sequelize = new Sequelize('comment', u, p, {
-    host: 'localhost',
+    host: host,
     dialect: 'mysql',
     define: {
       freezeTableName: true,
@@ -178,7 +178,7 @@ async function comment(u, p) {
   });
   await comment.sync({ alter: true });
 }
-async function work(u, p) {
+async function work(u, p, host) {
   let tag = require('./app/model/work/tag');
   let type = require('./app/model/work/type');
   let relation = require('./app/model/work/relation');
@@ -188,7 +188,7 @@ async function work(u, p) {
   let workComment = require('./app/model/work/work_comment');
   let workTag = require('./app/model/work/work_tag');
   let sequelize = new Sequelize('work', u, p, {
-    host: 'localhost',
+    host: host,
     dialect: 'mysql',
     define: {
       freezeTableName: true,
@@ -257,13 +257,13 @@ async function work(u, p) {
   await workComment.sync({ alter: true });
   await workTag.sync({ alter: true });
 }
-async function user(u, p) {
+async function user(u, p, host) {
   let user = require('./app/model/user/user');
   let upload = require('./app/model/user/upload');
   let userAlias = require('./app/model/user/user_alias');
   let userRelation = require('./app/model/user/user_relation');
   let sequelize = new Sequelize('user', u, p, {
-    host: 'localhost',
+    host: host,
     dialect: 'mysql',
     define: {
       freezeTableName: true,
@@ -304,10 +304,10 @@ async function user(u, p) {
   await userAlias.sync({ alter: true });
   await userRelation.sync({ alter: true });
 }
-async function message(u, p) {
+async function message(u, p, host) {
   let notify = require('./app/model/message/notify');
   let sequelize = new Sequelize('message', u, p, {
-    host: 'localhost',
+    host: host,
     dialect: 'mysql',
     define: {
       freezeTableName: true,
@@ -331,15 +331,16 @@ async function message(u, p) {
 async function exec() {
   let u = 'root';
   let p = '';
-  await passport(u, p);
-  await audio(u, p);
-  await video(u, p);
-  await image(u, p);
-  await text(u, p);
-  await comment(u, p);
-  await work(u, p);
-  await user(u, p);
-  await message(u, p);
+  let host = 'localhost';
+  await passport(u, p, host);
+  await audio(u, p, host);
+  await video(u, p, host);
+  await image(u, p, host);
+  await text(u, p, host);
+  await comment(u, p, host);
+  await work(u, p, host);
+  await user(u, p, host);
+  await message(u, p, host);
   console.warn('end');
 }
 exec();

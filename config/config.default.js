@@ -32,10 +32,10 @@ module.exports = appInfo => {
     datasources: [
       {
         dialect: 'mysql',
-        host: 'localhost',
+        host: 'rm-uf6ff008x0v1820gz.mysql.rds.aliyuncs.com',
         port: '3306',
         username: 'root',
-        password: 'Army8735@',
+        password: '',
         delegate: 'model.passport',
         baseDir: 'model/passport',
         database: 'passport',
@@ -51,10 +51,10 @@ module.exports = appInfo => {
       },
       {
         dialect: 'mysql',
-        host: 'localhost',
+        host: 'rm-uf6ff008x0v1820gz.mysql.rds.aliyuncs.com',
         port: '3306',
         username: 'root',
-        password: 'Army8735@',
+        password: '',
         delegate: 'model.user',
         baseDir: 'model/user',
         database: 'user',
@@ -70,10 +70,10 @@ module.exports = appInfo => {
       },
       {
         dialect: 'mysql',
-        host: 'localhost',
+        host: 'rm-uf6ff008x0v1820gz.mysql.rds.aliyuncs.com',
         port: '3306',
         username: 'root',
-        password: 'Army8735@',
+        password: '',
         delegate: 'model.audio',
         baseDir: 'model/audio',
         database: 'audio',
@@ -89,10 +89,10 @@ module.exports = appInfo => {
       },
       {
         dialect: 'mysql',
-        host: 'localhost',
+        host: 'rm-uf6ff008x0v1820gz.mysql.rds.aliyuncs.com',
         port: '3306',
         username: 'root',
-        password: 'Army8735@',
+        password: '',
         delegate: 'model.video',
         baseDir: 'model/video',
         database: 'video',
@@ -108,10 +108,10 @@ module.exports = appInfo => {
       },
       {
         dialect: 'mysql',
-        host: 'localhost',
+        host: 'rm-uf6ff008x0v1820gz.mysql.rds.aliyuncs.com',
         port: '3306',
         username: 'root',
-        password: 'Army8735@',
+        password: '',
         delegate: 'model.work',
         baseDir: 'model/work',
         database: 'work',
@@ -136,11 +136,12 @@ module.exports = appInfo => {
       db: 0,
     },
     time: 60,
+    longTime: 1800,
   };
 
   config.weibo = {
-    appKey: '1846028038',
-    appSecret: '6c966bbba798ff9f9d8a5e9b02cb4747',
+    appKey: '',
+    appSecret: '',
     redirect: 'http://passport.ciyuan.site/oauth/weibo_login',
   };
 

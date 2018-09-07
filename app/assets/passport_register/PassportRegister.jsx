@@ -3,9 +3,9 @@
 class PassportRegister extends migi.Component {
   constructor(...data) {
     super(...data);
-    this.type = 0;
+    this.type = 1;
     this.dis = true;
-    this.name = 15921858411;
+    this.name = 'army8735@qq.com';
     this.password = 1234;
     this.on(migi.Event.DOM, () => {
       let last = parseInt(localStorage.getItem('passportCodeTime'));
@@ -34,9 +34,10 @@ class PassportRegister extends migi.Component {
     let res = this.checkValid();
     if(res) {
       $net.postJSON({
-        url: '/code/phone',
+        url: '/api/code/register',
         body: {
           name: this.name,
+          type: this.type,
         },
       }, (err, resp, body) => {
         console.log(err, resp, body);
@@ -51,7 +52,7 @@ class PassportRegister extends migi.Component {
       }
     }
     else {
-      if(!/^1\d10$/.test(this.name)) {
+      if(!/^[A-Za-z0-9\u4e00-\u9fa5]+@[\w-]+(\.[\w-]+)+$/.test(this.name)) {
         alert('邮箱格式不正确');
         return false;
       }
@@ -70,7 +71,7 @@ class PassportRegister extends migi.Component {
   }
   submit(e) {
     e.preventDefault();
-    console.log(1)
+    console.log($net)
   }
   render() {
     return <div class="g-wrap passport-register">
