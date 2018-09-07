@@ -78,7 +78,7 @@ class Service extends egg.Service {
           raw: true,
         });
         if(exist) {
-          name = uuidv4();
+          name = uuidv4().replace(/-/g, '');
         }
         let user = await app.model.user.User.create({
           nickname: name,
@@ -88,34 +88,36 @@ class Service extends egg.Service {
           raw: true,
         });
         user = user.toJSON();
-        await app.model.passport.Oauth.create({
-          open_id: openId,
-          token,
-          type: 0,
-          user_id: user.id,
-        }, {
-          transaction: transactionPassport,
-          raw: true,
-        });
-        await app.model.user.User.update({
-          name: user.id,
-        }, {
-          where: {
-            id: user.id,
-          },
-          transaction: transactionUser,
-          raw: true,
-        });
+        await Promise.all([
+          app.model.passport.Oauth.create({
+            open_id: openId,
+            token,
+            type: 0,
+            user_id: user.id,
+          }, {
+            transaction: transactionPassport,
+            raw: true,
+          }),
+          app.model.user.User.update({
+            nickname: user.id,
+          }, {
+            where: {
+              id: user.id,
+            },
+            transaction: transactionUser,
+            raw: true,
+          })
+        ]);
         await transactionUser.commit();
         await transactionPassport.commit();
         return {
           success: true,
           data: user,
         };
-      } catch(err) {
-        ctx.logger.error(err.toString());
+      } catch(e) {
         await transactionUser.rollback();
         await transactionPassport.rollback();
+        ctx.logger.error(e.toString());
         return {
           success: false,
         };

@@ -1,14 +1,16 @@
 'use strict';
 
+const timeKey = 'passportCodeTime';
+
 class PassportRegister extends migi.Component {
   constructor(...data) {
     super(...data);
     this.type = 1;
     this.dis = true;
     this.name = 'army8735@qq.com';
-    this.password = 1234;
+    this.password = '87351984';
     this.on(migi.Event.DOM, () => {
-      let last = parseInt(localStorage.getItem('passportCodeTime'));
+      let last = parseInt(localStorage.getItem(timeKey));
       last = last || 0;
       let now = Date.now();
       if(now - last < 60) {
@@ -18,6 +20,12 @@ class PassportRegister extends migi.Component {
       else {
         this.interval = 0;
       }
+      setInterval(() => {
+        this.interval--;
+        if(this.interval <= 0) {
+          this.interval = 0;
+        }
+      }, 1000);
     });
   }
   @bind name
@@ -39,8 +47,19 @@ class PassportRegister extends migi.Component {
           name: this.name,
           type: this.type,
         },
-      }, (err, resp, body) => {
-        console.log(err, resp, body);
+      }, (res) => {
+        if(res.success) {
+          alert('验证码已发送，请注意查收~');
+          this.interval = 60;
+          this.dis = false;
+          localStorage.setItem(timeKey, Date.now());
+        }
+        else {
+          alert(res.message || $util.ERROR_MESSAGE);
+        }
+      }, (err) => {
+        console.error(err);
+        alert($util.ERROR_MESSAGE);
       });
     }
   }
@@ -71,7 +90,29 @@ class PassportRegister extends migi.Component {
   }
   submit(e) {
     e.preventDefault();
-    console.log($net)
+    let res = this.checkValid(true);
+    if(res) {
+      $net.postJSON({
+        url: '/api/register',
+        body: {
+          name: this.name,
+          type: this.type,
+          password: this.password,
+          code: this.code,
+        },
+      }, (res) => {
+        if(res.success) {
+          alert('注册成功，将自动登录...');
+          location.href = res.data || 'http://ciyuan.site';
+        }
+        else {
+          alert(res.message || $util.ERROR_MESSAGE);
+        }
+      }, (err) => {
+        console.error(err);
+        alert($util.ERROR_MESSAGE);
+      });
+    }
   }
   render() {
     return <div class="g-wrap passport-register">

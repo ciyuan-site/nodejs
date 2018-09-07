@@ -12,10 +12,6 @@ module.exports = appInfo => {
     domain: 'ciyuan.site',
   };
 
-  config.sequelize = {
-    datasources: [],
-  };
-
   config.middleware = ['jsConfig', 'report'];
 
   config.view = {
@@ -32,7 +28,7 @@ module.exports = appInfo => {
     datasources: [
       {
         dialect: 'mysql',
-        host: 'rm-uf6ff008x0v1820gz.mysql.rds.aliyuncs.com',
+        host: '',
         port: '3306',
         username: 'root',
         password: '',
@@ -51,7 +47,7 @@ module.exports = appInfo => {
       },
       {
         dialect: 'mysql',
-        host: 'rm-uf6ff008x0v1820gz.mysql.rds.aliyuncs.com',
+        host: '',
         port: '3306',
         username: 'root',
         password: '',
@@ -70,7 +66,7 @@ module.exports = appInfo => {
       },
       {
         dialect: 'mysql',
-        host: 'rm-uf6ff008x0v1820gz.mysql.rds.aliyuncs.com',
+        host: '',
         port: '3306',
         username: 'root',
         password: '',
@@ -89,7 +85,7 @@ module.exports = appInfo => {
       },
       {
         dialect: 'mysql',
-        host: 'rm-uf6ff008x0v1820gz.mysql.rds.aliyuncs.com',
+        host: '',
         port: '3306',
         username: 'root',
         password: '',
@@ -108,7 +104,7 @@ module.exports = appInfo => {
       },
       {
         dialect: 'mysql',
-        host: 'rm-uf6ff008x0v1820gz.mysql.rds.aliyuncs.com',
+        host: '',
         port: '3306',
         username: 'root',
         password: '',
@@ -153,6 +149,10 @@ module.exports = appInfo => {
       bucket: '',
     },
     sms: {
+      accessKeyId: '',
+      secretAccessKey: '',
+    },
+    dm: {
       accessKeyId: '',
       secretAccessKey: '',
     },
