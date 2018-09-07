@@ -11,11 +11,11 @@ module.exports = app => {
       allowNull: false,
     },
     title: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING(128),
       allowNull: false,
     },
     cover: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING(256),
       allowNull: true,
     },
     width: {

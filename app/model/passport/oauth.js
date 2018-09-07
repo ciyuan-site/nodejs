@@ -11,11 +11,11 @@ module.exports = app => {
       allowNull: false,
     },
     open_id: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING(128),
       allowNull: false,
     },
     token: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING(128),
       allowNull: false,
     },
     type: {

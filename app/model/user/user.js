@@ -11,7 +11,7 @@ module.exports = app => {
       allowNull: false,
     },
     nickname: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING(128),
       allowNull: false,
     },
     sex: {
@@ -21,11 +21,11 @@ module.exports = app => {
       comment: '0未知，1男，2女，3其它',
     },
     head_url: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING(256),
       allowNull: true,
     },
     sign: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING(256),
       allowNull: true,
     },
     alias_id: {

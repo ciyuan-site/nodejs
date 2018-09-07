@@ -19,7 +19,7 @@ module.exports = app => {
       allowNull: false,
     },
     url: {
-      type: Sequelize.STRING,
+      type: Sequelize.STRING(256),
       allowNull: false,
       defaultValue: '',
     },
