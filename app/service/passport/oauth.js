@@ -78,7 +78,7 @@ class Service extends egg.Service {
           raw: true,
         });
         if(exist) {
-          name = uuidv4().replace(/-/g, '');
+          name = uuidv4();
         }
         let user = await app.model.user.User.create({
           nickname: name,
@@ -88,6 +88,7 @@ class Service extends egg.Service {
           raw: true,
         });
         user = user.toJSON();
+        user.nickname = user.id;
         await Promise.all([
           app.model.passport.Oauth.create({
             open_id: openId,

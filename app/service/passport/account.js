@@ -49,12 +49,13 @@ class Service extends egg.Service {
     let transactionPassport = await app.model.passport.transaction();
     try {
       let user = await app.model.user.User.create({
-        nickname: uuidv4().replace(/-/g, ''),
+        nickname: uuidv4(),
       }, {
         transaction: transactionUser,
         raw: true,
       });
       user = user.toJSON();
+      user.nickname = user.id;
       await Promise.all([
         app.model.passport.Account.create({
           type,
@@ -140,12 +141,13 @@ class Service extends egg.Service {
     let transactionPassport = await app.model.passport.transaction();
     try {
       let user = await app.model.user.User.create({
-        nickname: uuidv4().replace(/-/g, ''),
+        nickname: uuidv4(),
       }, {
         transaction: transactionUser,
         raw: true,
       });
       user = user.toJSON();
+      user.nickname = user.id;
       await Promise.all([
         app.model.passport.Account.create({
           type,
