@@ -8,13 +8,22 @@ class Controller extends egg.Controller {
     let body = ctx.request.body;
     let name = body.name;
     let password = body.password;
+    let remember = body.remember === 'true';
     if(!name || !password) {
       return ctx.body = ctx.helper.errorJSON('请输入用户名和密码');
     }
-    if(/^1\d{10}$/.test(name)) {}
-    else if(/^1\d{10}$/.test(name)) {}
-    else {}
-    ctx.body = ctx.helper.ajaxJSON();
+    if(/^1\d{10}$/.test(name)) {
+      let res = await service.passport.account.loginPhone(name, password, remember);
+      ctx.body = ctx.helper.ajaxJSON(res);
+    }
+    else if(/^[A-Za-z0-9\u4e00-\u9fa5]+@[\w-]+(\.[\w-]+)+$/.test(name)) {
+      let res = await service.passport.account.loginEmail(name, password, remember);
+      ctx.body = ctx.helper.ajaxJSON(res);
+    }
+    else {
+      let res = await service.passport.account.login(name, password, remember);
+      ctx.body = ctx.helper.ajaxJSON(res);
+    }
   }
 
   async exist() {

@@ -3,12 +3,10 @@
 const timeKey = 'passportCodeTime';
 
 class PassportRegister extends migi.Component {
-  constructor(...data) {
-    super(...data);
-    this.type = 1;
+  constructor(data) {
+    super(data);
+    this.type = 0;
     this.dis = true;
-    this.name = 'army8735@qq.com';
-    this.password = '87351984';
     this.on(migi.Event.DOM, () => {
       let last = parseInt(localStorage.getItem(timeKey));
       last = last || 0;
@@ -103,7 +101,7 @@ class PassportRegister extends migi.Component {
       }, (res) => {
         if(res.success) {
           alert('注册成功，将自动登录...');
-          location.href = res.data || 'http://ciyuan.site';
+          location.href = res.data || location.protocol + '//' + location.host.replace(/^[\w.]+ciyuan/, 'ciyuan');
         }
         else {
           alert(res.message || $util.ERROR_MESSAGE);
@@ -118,7 +116,7 @@ class PassportRegister extends migi.Component {
     return <div class="g-wrap passport-register">
       <form class="register" onSubmit={ this.submit }>
         <div class="line right">
-          <a href="/register">已有账号直接登录？</a>
+          <a href="/login">已有账号直接登录？</a>
         </div>
         <div class="line">
           <label class="lab">{ this.type === 0 ? '手机号' : '邮箱地址' }：</label>

@@ -72,17 +72,26 @@
         display:block;
         padding-top:0.35rem;
         min-width:0.32rem;
-        &.weibo{
-          background:url(../passport_login/weibo.png) no-repeat center 0;
-          background-size:0.32rem 0.32rem;
+        &.weibo:before{
+          display:block;
+          font-size:0.32rem;
+          font-family:iconfont;
+          content:'\e73c';
+          color:#e85e5f;
         }
-        &.weixin{
-          background:url(../passport_login/weixin.png) no-repeat center 0;
-          background-size:0.32rem 0.32rem;
+        &.weixin:before{
+          display:block;
+          font-size:0.32rem;
+          font-family:iconfont;
+          content:'\e73b';
+          color:#54b576;
         }
-        &.qq{
-          background:url(../passport_login/qq.png) no-repeat center 0;
-          background-size:0.32rem 0.32rem;
+        &.qq:before{
+          display:block;
+          font-size:0.32rem;
+          font-family:iconfont;
+          content:'\e73e';
+          color:#38a6db;
         }
       }
     }

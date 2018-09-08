@@ -18,10 +18,6 @@ module.exports = app => {
       type: Sequelize.STRING(128),
       allowNull: false,
     },
-    password: {
-      type: Sequelize.CHAR(32),
-      allowNull: false,
-    },
     type: {
       type: Sequelize.TINYINT.UNSIGNED,
       allowNull: false,

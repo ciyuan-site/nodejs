@@ -5,11 +5,175 @@ const uuidv4 = require('uuid/v4');
 const Spark = require('spark-md5');
 
 class Service extends egg.Service {
+  async login(nickname, password, remember) {
+    if(!nickname) {
+      return {
+        success: false,
+        message: '用户名不能为空~',
+      };
+    }
+    if(!password) {
+      return {
+        success: false,
+        message: '密码不能为空~',
+      };
+    }
+    const { app, ctx, service, } = this;
+    let check = await app.model.user.User.findOne({
+      attributes: [
+        'id'
+      ],
+      where: {
+        nickname,
+        password: Spark.hash(password + 'ciyuan'),
+      },
+      raw: true,
+    });
+    if(!check) {
+      return {
+        success: false,
+        message: '用户名和密码不匹配~',
+      };
+    }
+    let user = await service.user.user.info(check.id);
+    ctx.session.uid = user.id;
+    ctx.session.nickname = user.nickname;
+    ctx.session.headUrl = user.headUrl;
+    if(!remember) {
+      ctx.session.maxAge = 0;
+    }
+    return {
+      success: true,
+    };
+  }
+
+  async loginPhone(phone, password, remember) {
+    if(!phone || !/^1\d{10}$/.test(phone)) {
+      return {
+        success: false,
+        message: '手机号不合法~',
+      };
+    }
+    if(!password) {
+      return {
+        success: false,
+        message: '密码不能为空~',
+      };
+    }
+    const { app, ctx, service, } = this;
+    let check = await app.model.passport.Account.findOne({
+      attributes: [
+        ['user_id', 'userId']
+      ],
+      where: {
+        name: phone,
+        type: 0,
+      },
+      raw: true,
+    });
+    if(!check) {
+      return {
+        success: false,
+        message: '用户名和密码不匹配~',
+      };
+    }
+    check = await app.model.user.User.findOne({
+      attributes: [
+        'id'
+      ],
+      where: {
+        id: check.userId,
+        password: Spark.hash(password + 'ciyuan'),
+      },
+      raw: true,
+    });
+    if(!check) {
+      return {
+        success: false,
+        message: '用户名和密码不匹配~',
+      };
+    }
+    let user = await service.user.user.info(check.id);
+    ctx.session.uid = user.id;
+    ctx.session.nickname = user.nickname;
+    ctx.session.headUrl = user.headUrl;
+    if(!remember) {
+      ctx.session.maxAge = 0;
+    }
+    return {
+      success: true,
+    };
+  }
+
+  async loginEmail(email, password, remember) {
+    if(!email || !/^[A-Za-z0-9\u4e00-\u9fa5]+@[\w-]+(\.[\w-]+)+$/.test(email)) {
+      return {
+        success: false,
+        message: 'Email号不合法~',
+      };
+    }
+    if(!password) {
+      return {
+        success: false,
+        message: '密码不能为空~',
+      };
+    }
+    const { app, ctx, service, } = this;
+    let check = await app.model.passport.Account.findOne({
+      attributes: [
+        ['user_id', 'userId']
+      ],
+      where: {
+        name: email,
+        type: 1,
+      },
+      raw: true,
+    });
+    if(!check) {
+      return {
+        success: false,
+        message: '用户名和密码不匹配~',
+      };
+    }
+    check = await app.model.user.User.findOne({
+      attributes: [
+        'id'
+      ],
+      where: {
+        id: check.userId,
+        password: Spark.hash(password + 'ciyuan'),
+      },
+      raw: true,
+    });
+    if(!check) {
+      return {
+        success: false,
+        message: '用户名和密码不匹配~',
+      };
+    }
+    let user = await service.user.user.info(check.id);
+    ctx.session.uid = user.id;
+    ctx.session.nickname = user.nickname;
+    ctx.session.headUrl = user.headUrl;
+    if(!remember) {
+      ctx.session.maxAge = 0;
+    }
+    return {
+      success: true,
+    };
+  }
+
   async registerPhone(phone, password, code) {
     if(!phone || !/^1\d{10}$/.test(phone)) {
       return {
         success: false,
         message: '手机号不合法~',
+      };
+    }
+    if(!password) {
+      return {
+        success: false,
+        message: '密码不能为空~',
       };
     }
     const { app, ctx, } = this;
@@ -50,6 +214,7 @@ class Service extends egg.Service {
     try {
       let user = await app.model.user.User.create({
         nickname: uuidv4(),
+        password: Spark.hash(password + 'ciyuan'),
       }, {
         transaction: transactionUser,
         raw: true,
@@ -61,7 +226,6 @@ class Service extends egg.Service {
           type,
           name: phone,
           user_id: user.id,
-          password: Spark.hash(password + 'ciyuan'),
         }, {
           transaction: transactionPassport,
           raw: true,
@@ -78,6 +242,7 @@ class Service extends egg.Service {
       ]);
       await transactionUser.commit();
       await transactionPassport.commit();
+      app.redis.del(cacheKey);
       ctx.session.uid = user.id;
       ctx.session.nickname = user.nickname;
       ctx.session.headUrl = user.head_url;
@@ -102,6 +267,12 @@ class Service extends egg.Service {
       return {
         success: false,
         message: 'Email不合法~',
+      };
+    }
+    if(!password) {
+      return {
+        success: false,
+        message: '密码不能为空~',
       };
     }
     const { app, ctx, } = this;
@@ -142,6 +313,7 @@ class Service extends egg.Service {
     try {
       let user = await app.model.user.User.create({
         nickname: uuidv4(),
+        password: Spark.hash(password + 'ciyuan'),
       }, {
         transaction: transactionUser,
         raw: true,
@@ -153,7 +325,6 @@ class Service extends egg.Service {
           type,
           name: email,
           user_id: user.id,
-          password: Spark.hash(password + 'ciyuan'),
         }, {
           transaction: transactionPassport,
           raw: true,
@@ -170,6 +341,7 @@ class Service extends egg.Service {
       ]);
       await transactionUser.commit();
       await transactionPassport.commit();
+      app.redis.del(cacheKey);
       ctx.session.uid = user.id;
       ctx.session.nickname = user.nickname;
       ctx.session.headUrl = user.head_url;

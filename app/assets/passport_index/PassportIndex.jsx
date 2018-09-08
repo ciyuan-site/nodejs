@@ -1,8 +1,8 @@
 'use strict';
 
 class PassportIndex extends migi.Component {
-  constructor(...data) {
-    super(...data);
+  constructor(data) {
+    super(data);
   }
   render() {
     return <div class="passport-index g-wrap">
