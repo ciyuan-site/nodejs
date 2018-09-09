@@ -6,7 +6,7 @@ class Home extends migi.Component {
   }
   render() {
     return <div class="home">
-      <img src="//zhuanquan.xin/ciyuan/03554fe81164cf7cb53a6329c64eba4a.png"/>
+      <img src="//zhuanquan.xin/ciyuan/b858a76f9b533a6e3c1adaaa1b26c2cc.png"/>
     </div>;
   }
 }

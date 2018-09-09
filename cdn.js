@@ -5,9 +5,7 @@ const fs = require('fs');
 const stream = require('stream');
 const SparkMD5 = require('spark-md5');
 const OSS = require('ali-oss');
-const config = require('./config/config.local')({
-  name: '',
-});
+const config = require('./config/config.local')();
 
 let client = new OSS(config.aliyun.oss);
 

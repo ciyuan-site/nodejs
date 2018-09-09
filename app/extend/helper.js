@@ -6,6 +6,8 @@
 
 const map = require('../../map.json');
 
+const R8232 = new RegExp(String.fromCharCode(8232), 'g');
+
 module.exports = {
   getAssetUrl(url) {
     if(url.indexOf('//') > -1) {
@@ -70,7 +72,7 @@ module.exports = {
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta charset="UTF-8"/>
 <title>${ '次元站' + (data.title ? '-' + data.title : '') }</title>
-<link rel="icon" href="//zhuanquan.xin/ciyuan/cd88e9d2300fd6d0b44b124c6467d480.png" type="image/x-icon">
+<link rel="icon" href="//zhuanquan.xin/ciyuan/eef93ddcf8e5955cba821a29a4573d73.png" type="image/x-icon">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <meta name="renderer" content="webkit"/>
 <meta name="apple-mobile-web-app-capable" content="yes"/>
@@ -102,18 +104,19 @@ ${ (Array.isArray(data.css) ? data.css : [data.css]).filter((item) => {
     </form>
     <ul class="i fn-clear">
       ${ uid
-        ? `<li><a href="${ this.app.config.hostMy }"><img src="${ this.img(this.ctx.session.headUrl, 64, 64, 80) }"/>${ this.ctx.session.nickname }</a></li>
+        ? `<li><a href="${ this.app.config.hostMy }"><img src="${ this.img(this.ctx.session.headUrl || '//zhuanquan.xin/head/head.png', 64, 64, 80) }"/>${ this.ctx.session.nickname }</a></li>
           <li><a href="${ this.app.config.hostPassport + '/exit' }">退出</a></li>`
         : `<li><a href="${ this.app.config.hostPassport + '/login' }">登录</a></li>
           <li><a href="${ this.app.config.hostPassport + '/register' }">注册</a></li>` }
       <li><a href="#">约稿</a></li>
-      <li><a href="${ this.app.config.hostContribute }" class="contribute">投稿</a></li>
+      <li><a href="${ this.app.config.hostUpload }" class="upload">投稿</a></li>
     </ul>
   </div>
 </div>`;
   },
   end: function(data) {
     return `<script>var $CONFIG = {};</script>
+<script>Object.assign($CONFIG, ${ this.stringify(data.config) })</script>
 <script src="${this.getAssetUrl('/common.js')}" defer="defer"></script>
 ${ (Array.isArray(data.js) ? data.js : [data.js]).filter((item) => {
   return item;
@@ -135,7 +138,7 @@ ${ (Array.isArray(data.js) ? data.js : [data.js]).filter((item) => {
     if(!str) {
       return '';
     }
-    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+    return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(R8232, '&#8232;');
   },
   $CONFIG: 'var $CONFIG = {};',
 };

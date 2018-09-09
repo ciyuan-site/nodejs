@@ -1,0 +1,84 @@
+.upload-index{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  h2{
+    margin:0.2rem 0;
+    text-align:center;
+    font-size:0.24rem;
+    font-weight:400;
+  }
+  .kind{
+    margin:0.2rem 0;
+    li{
+      float:left;
+      margin-right:4%;
+      width:22%;
+      &:last-child{
+        margin-right:0;
+      }
+      a{
+        display:block;
+        box-sizing:border-box;
+        height:1rem;
+        line-height:1rem;
+        font-size:0.24rem;
+        text-align:center;
+        border-radius:0.1rem;
+        cursor:pointer;
+        &:hover{
+          border:1px dashed #CCC;
+        }
+        &.audio{
+          background:rgba(105, 218, 240, 0.1);
+          color:rgb(105, 218, 240);
+          &:before{
+            margin-right:0.01rem;
+            font-family:iconfont;
+            content:'\e600';
+          }
+          &:hover{
+            background:rgba(105, 218, 240, 0.2);
+          }
+        }
+        &.video{
+          background:rgba(230, 33, 41, 0.1);
+          color:rgb(230, 33, 41);
+          &:before{
+            margin-right:0.02rem;
+            font-family:iconfont;
+            content:'\e610';
+          }
+          &:hover{
+            background:rgba(230, 33, 41, 0.2);
+          }
+        }
+        &.image{
+          background:rgba(49, 178, 89, 0.1);
+          color:rgb(49, 178, 89);
+          &:before{
+            margin-right:0.02rem;
+            font-family:iconfont;
+            content:'\e656';
+          }
+          &:hover{
+            background:rgba(49, 178, 89, 0.2);
+          }
+        }
+        &.text{
+          background:rgba(102, 102, 102, 0.1);
+          color:rgb(102, 102, 102);
+          &:before{
+            margin-right:0.02rem;
+            font-family:iconfont;
+            content:'\e60e';
+          }
+          &:hover{
+            background:rgba(102, 102, 102, 0.2);
+          }
+        }
+      }
+    }
+  }
+}

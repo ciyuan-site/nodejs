@@ -15,4 +15,7 @@ module.exports = app => {
   router.post('/passport/api/exist', controller.passport.api.index.exist);
   router.post('/passport/api/register', app.middlewares.needNotLoginJson(), controller.passport.api.index.register);
   router.post('/passport/api/code/register', app.middlewares.needNotLoginJson(), controller.passport.api.code.register);
+
+  router.get('/upload', app.middlewares.needLogin(), controller.upload.index.index);
+  router.get('/upload/audio', app.middlewares.needLogin(), controller.upload.index.audio);
 };

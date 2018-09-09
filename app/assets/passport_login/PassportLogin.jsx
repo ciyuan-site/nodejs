@@ -54,7 +54,7 @@ class PassportLogin extends migi.Component {
         </div>
         <div class="line">
           <label class="lab">密码：</label>
-          <input type="text" autoComplete="off" maxLength="32" placeholder="账号密码" value={ this.password }/>
+          <input type="password" autoComplete="off" maxLength="32" placeholder="账号密码" value={ this.password }/>
         </div>
         <div class="line">
           <label><input type="checkbox" checked={ this.remember }/>记住密码</label>

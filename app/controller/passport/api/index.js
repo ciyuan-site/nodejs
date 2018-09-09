@@ -8,7 +8,7 @@ class Controller extends egg.Controller {
     let body = ctx.request.body;
     let name = body.name;
     let password = body.password;
-    let remember = body.remember === 'true';
+    let remember = body.remember === true;
     if(!name || !password) {
       return ctx.body = ctx.helper.errorJSON('请输入用户名和密码');
     }

@@ -4,7 +4,7 @@ module.exports = appInfo => {
   const config = {};
 
   // use for cookie sign key, should change to your own and keep security
-  config.keys = appInfo.name + '_1533449579600_6240';
+  config.keys = 'ciyuan';
 
   config.session = {
     key: 'sessionid',
@@ -166,7 +166,7 @@ module.exports = appInfo => {
   config.hostVideo = 'http://video.ciyuan.site';
   config.hostImage = 'http://image.ciyuan.site';
   config.hostText = 'http://text.ciyuan.site';
-  config.hostContribute = 'http://contribute.ciyuan.site';
+  config.hostUpload = 'http://upload.ciyuan.site';
 
   return config;
 };

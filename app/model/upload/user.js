@@ -3,7 +3,7 @@
 module.exports = app => {
   const Sequelize = app.Sequelize;
 
-  return app.model.user.define('upload', {
+  return app.model.user.define('user', {
     id: {
       type: Sequelize.INTEGER.UNSIGNED,
       primaryKey: true,
@@ -18,6 +18,11 @@ module.exports = app => {
       type: Sequelize.BIGINT.UNSIGNED,
       allowNull: false,
     },
+    kind: {
+      type: Sequelize.TINYINT.UNSIGNED,
+      allowNull: false,
+      comment: '0音频；1视频；2图绘；3文词',
+    },
     create_time: {
       type: Sequelize.DATE,
       allowNull: false,
@@ -31,15 +36,15 @@ module.exports = app => {
   }, {
     indexes: [
       {
-        name: 'user_id_work_id_create_time',
-        fields: ['user_id', 'work_id', 'create_time'],
+        name: 'user_id_work_id_kind_create_time',
+        fields: ['user_id', 'work_id', 'kind', 'create_time'],
       },
       {
-        name: 'work_id',
+        name: 'work_id_kind_user_id',
         unique: true,
-        fields: ['work_id'],
+        fields: ['work_id', 'kind', 'user_id'],
       },
     ],
-    comment: '作品关系',
+    comment: '用户上传记录',
   });
 };

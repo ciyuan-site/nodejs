@@ -126,7 +126,7 @@ class PassportRegister extends migi.Component {
         </div>
         <div class="line">
           <label class="lab">密码：</label>
-          <input type="text" autoComplete="off" maxLength="32" placeholder="账号密码" value={ this.password }/>
+          <input type="password" autoComplete="off" maxLength="32" placeholder="账号密码" value={ this.password }/>
         </div>
         <div className="line">
           <label className="lab">验证码：</label>
